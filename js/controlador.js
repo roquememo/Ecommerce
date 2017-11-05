@@ -1,8 +1,5 @@
 $(document).ready(function(){
 
-	
-
-
 	$("#select-categorias").html('<option>Todo</option>'+
 		'<option>Ropa</option>'+
 		'<option>Comida y Bebidas </option>'+
