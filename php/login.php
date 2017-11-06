@@ -8,13 +8,13 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 	$stmt = $mysqli->query($consulta);
 
 	if($row=mysqli_fetch_array($stmt)){
-		/*session_start();
+		session_start();
 		$_SESSION['id']=$row['id_usuario'];
 		$_SESSION['nombre']=$row['nombre'];
 		$_SESSION['apellido']=$row['apellido'];
 		$_SESSION['correo']=$row['correo'];
 		$_SESSION['cumple']=$row['fecha_nac'];
-		$_SESSION['direccion']=$row['id_direccion'];*/
+		$_SESSION['direccion']=$row['id_direccion'];
 	}
 	else{
 		echo "Datos incorrectos";
