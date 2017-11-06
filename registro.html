@@ -29,7 +29,6 @@
 	</div>
 	</div>
 </div>
-<!-- Navbar ================================================== -->
 <div id="logoArea" class="navbar">
 <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
 	<span class="icon-bar"></span>
@@ -77,11 +76,9 @@
 </div>
 </div>
 </div>
-<!-- Header End====================================================================== -->
 <div id="mainBody">
 	<div class="container">
 	<div class="row">
-<!-- Sidebar ================================================== -->
 	<div id="sidebar" class="span3">
 		<div class="well well-small"><a id="myCart" href="cesta.html"><img src="imagenes/ico-cart.png" alt="cart">3 Artículos en tu cesta <span class="badge badge-warning pull-right">$155.00</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
@@ -142,7 +139,6 @@
 				</div>
 			  </div>
 	</div>
-<!-- Sidebar end=============================================== -->
 	<div class="span9">
     <ul class="breadcrumb">
 		<li><a href="index.html">Inicio</a> <span class="divider">/</span></li>
@@ -150,171 +146,151 @@
     </ul>
 	<h3> Registrarse</h3>	
 	<div class="well">
-	<!--
-	<div class="alert alert-info fade in">
-		<button type="button" class="close" data-dismiss="alert">×</button>
-		<strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	 </div>
-	<div class="alert fade in">
-		<button type="button" class="close" data-dismiss="alert">×</button>
-		<strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	 </div>
-	 <div class="alert alert-block alert-error fade in">
-		<button type="button" class="close" data-dismiss="alert">×</button>
-		<strong>Lorem Ipsum is simply</strong> dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	 </div> -->
-	<form class="form-horizontal" >
+	<form class="form-horizontal" method="GET" action="php/registro.php">
 		<h4>Información Personal</h4>
 		<div class="control-group">
-		<label class="control-label">Title <sup>*</sup></label>
-		<div class="controls">
-		<select class="span1" name="days">
-			<option value="">-</option>
-			<option value="1">Sr.</option>
-			<option value="2">Sra.</option>
-		</select>
-		</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputFname1">Nombre<sup>*</sup></label>
+			<label class="control-label" for="txtNombre">Nombre<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="inputFname1" placeholder="Nombre">
+			  <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" required>
 			</div>
 		 </div>
 		 <div class="control-group">
-			<label class="control-label" for="inputLnam">Apellidos <sup>*</sup></label>
+			<label class="control-label" for="txtApellido">Apellidos <sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="inputLnam" placeholder="Apellidos">
+			  <input type="text" id="txtApellido" name="txtApellido" placeholder="Apellidos" required>
 			</div>
 		 </div>
 		<div class="control-group">
-		<label class="control-label" for="input_email">Correo <sup>*</sup></label>
+		<label class="control-label" for="txtEmail">Correo <sup>*</sup></label>
 		<div class="controls">
-		  <input type="text" id="input_email" placeholder="Correo">
+		  <input type="email" id="txtEmail" name="txtEmail" placeholder="Correo" required>
 		</div>
 	  </div>	  
 	<div class="control-group">
-		<label class="control-label" for="inputPassword1">Contraseña <sup>*</sup></label>
+		<label class="control-label" for="txtContrasena">Contraseña <sup>*</sup></label>
 		<div class="controls">
-		  <input type="password" id="inputPassword1" placeholder="Contraseña">
+		  <input type="password" id="txtContrasena" name="txtContrasena" placeholder="Contraseña" required>
 		</div>
 	  </div>	  
 		<div class="control-group">
 		<label class="control-label">Fecha de Nacimiento <sup>*</sup></label>
 		<div class="controls">
-		  <select class="span1" name="days">
-				<option value="">-</option>
-					<option value="1">1&nbsp;&nbsp;</option>
-					<option value="2">2&nbsp;&nbsp;</option>
-					<option value="3">3&nbsp;&nbsp;</option>
-					<option value="4">4&nbsp;&nbsp;</option>
-					<option value="5">5&nbsp;&nbsp;</option>
-					<option value="6">6&nbsp;&nbsp;</option>
-					<option value="7">7&nbsp;&nbsp;</option>
+		  <select class="span1" id="cbxDia" name="cbxDia">
+				<option value="">DIA</option>
+					<option value="01">1&nbsp;&nbsp;</option>
+					<option value="02">2&nbsp;&nbsp;</option>
+					<option value="03">3&nbsp;&nbsp;</option>
+					<option value="04">4&nbsp;&nbsp;</option>
+					<option value="05">5&nbsp;&nbsp;</option>
+					<option value="06">6&nbsp;&nbsp;</option>
+					<option value="07">7&nbsp;&nbsp;</option>
+					<option value="08">8&nbsp;&nbsp;</option>
+					<option value="09">9&nbsp;&nbsp;</option>
+					<option value="10">10&nbsp;&nbsp;</option>
+					<option value="11">11&nbsp;&nbsp;</option>
+					<option value="12">12&nbsp;&nbsp;</option>
+					<option value="13">13&nbsp;&nbsp;</option>
+					<option value="14">14&nbsp;&nbsp;</option>
+					<option value="15">15&nbsp;&nbsp;</option>
+					<option value="16">16&nbsp;&nbsp;</option>
+					<option value="17">17&nbsp;&nbsp;</option>
+					<option value="18">18&nbsp;&nbsp;</option>
+					<option value="19">19&nbsp;&nbsp;</option>
+					<option value="20">20&nbsp;&nbsp;</option>
+					<option value="21">21&nbsp;&nbsp;</option>
+					<option value="22">22&nbsp;&nbsp;</option>
+					<option value="23">23&nbsp;&nbsp;</option>
+					<option value="24">24&nbsp;&nbsp;</option>
+					<option value="25">25&nbsp;&nbsp;</option>
+					<option value="26">26&nbsp;&nbsp;</option>
+					<option value="27">27&nbsp;&nbsp;</option>
+					<option value="28">28&nbsp;&nbsp;</option>
+					<option value="29">29&nbsp;&nbsp;</option>
+					<option value="30">30&nbsp;&nbsp;</option>
+					<option value="31">31&nbsp;&nbsp;</option>
 			</select>
-			<select class="span1" name="days">
-				<option value="">-</option>
-					<option value="1">1&nbsp;&nbsp;</option>
-					<option value="2">2&nbsp;&nbsp;</option>
-					<option value="3">3&nbsp;&nbsp;</option>
-					<option value="4">4&nbsp;&nbsp;</option>
-					<option value="5">5&nbsp;&nbsp;</option>
-					<option value="6">6&nbsp;&nbsp;</option>
-					<option value="7">7&nbsp;&nbsp;</option>
+			<select class="span1" id="cbxMes" name="cbxMes">
+				<option value="">MES</option>
+					<option value="01">1&nbsp;&nbsp;</option>
+					<option value="02">2&nbsp;&nbsp;</option>
+					<option value="03">3&nbsp;&nbsp;</option>
+					<option value="04">4&nbsp;&nbsp;</option>
+					<option value="05">5&nbsp;&nbsp;</option>
+					<option value="06">6&nbsp;&nbsp;</option>
+					<option value="07">7&nbsp;&nbsp;</option>
+					<option value="08">8&nbsp;&nbsp;</option>
+					<option value="09">9&nbsp;&nbsp;</option>
+					<option value="10">10&nbsp;&nbsp;</option>
+					<option value="11">11&nbsp;&nbsp;</option>
+					<option value="12">12&nbsp;&nbsp;</option>
 			</select>
-			<select class="span1" name="days">
-				<option value="">-</option>
-					<option value="1">1&nbsp;&nbsp;</option>
-					<option value="2">2&nbsp;&nbsp;</option>
-					<option value="3">3&nbsp;&nbsp;</option>
-					<option value="4">4&nbsp;&nbsp;</option>
-					<option value="5">5&nbsp;&nbsp;</option>
-					<option value="6">6&nbsp;&nbsp;</option>
-					<option value="7">7&nbsp;&nbsp;</option>
+			<select class="span1" id="cbxAno" name="cbxAno">
+				<option value="">AÑO</option>
+					<option value="1990">1990&nbsp;&nbsp;</option>
+					<option value="1991">1991&nbsp;&nbsp;</option>
+					<option value="1992">1992&nbsp;&nbsp;</option>
+					<option value="1993">1993&nbsp;&nbsp;</option>
+					<option value="1994">1994&nbsp;&nbsp;</option>
+					<option value="1995">1995&nbsp;&nbsp;</option>
+					<option value="1996">1996&nbsp;&nbsp;</option>
+					<option value="1997">1997&nbsp;&nbsp;</option>
+					<option value="1998">1998&nbsp;&nbsp;</option>
+					<option value="1999">1999&nbsp;&nbsp;</option>
 			</select>
 		</div>
 	  </div>
-
-	<div class="alert alert-block alert-error fade in">
-		<button type="button" class="close" data-dismiss="alert">×</button>
-		<strong>Lorem Ipsum is simply</strong> dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-	 </div>	
-
-		<h4>Dirección</h4>
-		<div class="control-group">
-			<label class="control-label" for="inputFname">Nombre <sup>*</sup></label>
-			<div class="controls">
-			  <input type="text" id="inputFname" placeholder="Nombre">
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputLname">Apellidos <sup>*</sup></label>
-			<div class="controls">
-			  <input type="text" id="inputLname" placeholder="Apellidos"/>
-			</div>
-		</div>
-		
+	  	<br>
+		<h4>Dirección</h4>		
 		
 		<div class="control-group">
-			<label class="control-label" for="address">Dirección<sup>*</sup></label>
+			<label class="control-label" for="txtDireccion">Dirección<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="address" placeholder="Dirección"/> <span>Calle, P.O. box,  c/o</span>
+			  <input type="text" id="txtDireccion" name="txtDireccion" placeholder="Dirección" required/><span>Calle, avenida, zona</span>
 			</div>
 		</div>
 		
 		<div class="control-group">
-			<label class="control-label" for="address2">Dirección (Línea 2)<sup>*</sup></label>
+			<label class="control-label" for="txtDireccion2">Dirección (Línea 2)<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="address2" placeholder="Adress line 2"/> <span>Apartmento, suite, edificio, piso, etc.</span>
+			  <input type="text" id="txtDireccion2" name="txtDireccion2"/> <span>Observaciones.</span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="city">Ciudad<sup>*</sup></label>
+			<label class="control-label" for="txtCiudad">Ciudad<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="city" placeholder="ciudad"/> 
+			  <input type="text" id="txtCiudad" name="txtCiudad" placeholder="Ciudad" required/> 
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="state">Departamento<sup>*</sup></label>
+			<label class="control-label" for="cbxDepartamento">Departamento<sup>*</sup></label>
 			<div class="controls">
-			  <select id="state" >
+			  <select id="cbxDepartamento" name="cbxDepartamento">
 				<option value="">-</option>
-				<option value="1">Alabama</option><option value="2">Alaska</option><option value="3">Arizona</option><option value="4">Arkansas</option><option value="5">California</option><option value="6">Colorado</option><option value="7">Connecticut</option><option value="8">Delaware</option><option value="53">District of Columbia</option><option value="9">Florida</option><option value="10">Georgia</option><option value="11">Hawaii</option><option value="12">Idaho</option><option value="13">Illinois</option><option value="14">Indiana</option><option value="15">Iowa</option><option value="16">Kansas</option><option value="17">Kentucky</option><option value="18">Louisiana</option><option value="19">Maine</option><option value="20">Maryland</option><option value="21">Massachusetts</option><option value="22">Michigan</option><option value="23">Minnesota</option><option value="24">Mississippi</option><option value="25">Missouri</option><option value="26">Montana</option><option value="27">Nebraska</option><option value="28">Nevada</option><option value="29">New Hampshire</option><option value="30">New Jersey</option><option value="31">New Mexico</option><option value="32">New York</option><option value="33">North Carolina</option><option value="34">North Dakota</option><option value="35">Ohio</option><option value="36">Oklahoma</option><option value="37">Oregon</option><option value="38">Pennsylvania</option><option value="51">Puerto Rico</option><option value="39">Rhode Island</option><option value="40">South Carolina</option><option value="41">South Dakota</option><option value="42">Tennessee</option><option value="43">Texas</option><option value="52">US Virgin Islands</option><option value="44">Utah</option><option value="45">Vermont</option><option value="46">Virginia</option><option value="47">Washington</option><option value="48">West Virginia</option><option value="49">Wisconsin</option><option value="50">Wyoming</option></select>
+				<option value="1">Francisco Morazán</option>
+				<option value="2">Cortés</option>
+				<option value="3">Comayagua</option>
+				<option value="4">Choluteca</option>
+				<option value="5">Olancho</option>
+			</select>
 			</div>
 		</div>		
 		<div class="control-group">
-			<label class="control-label" for="postcode">Código Postal <sup>*</sup></label>
+			<label class="control-label" for="txtInformacion">Información Adicional</label>
 			<div class="controls">
-			  <input type="text" id="postcode" placeholder="Código Postal"/> 
+			  <input type="text" id="txtInformacion" name="txtInformacion" placeholder="Información adicional"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="txtTelefono">Teléfono<sup>*</sup></label>
+			<div class="controls">
+			  <input type="text"  name="txtTelefono" id="txtTelefono" required/><span><span>Sin guiones, solo número. Obligatorio.</span>
 			</div>
 		</div>
 		
 		<div class="control-group">
-			<label class="control-label" for="country">País<sup>*</sup></label>
+			<label class="control-label" for="txtTelefono2">Teléfono secundario </label>
 			<div class="controls">
-			<select id="country" >
-				<option value="">-</option>
-				<option value="1">País</option>
-			</select>
-			</div>
-		</div>	
-		<div class="control-group">
-			<label class="control-label" for="aditionalInfo">Información Adicional</label>
-			<div class="controls">
-			  <textarea name="aditionalInfo" id="aditionalInfo" cols="26" rows="3">Información Adicional</textarea>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="phone">Número de Casa <sup>*</sup></label>
-			<div class="controls">
-			  <input type="text"  name="phone" id="phone" placeholder="phone"/> <span>Debes registrar al menos un número de teléfono.</span>
-			</div>
-		</div>
-		
-		<div class="control-group">
-			<label class="control-label" for="mobile">Celular </label>
-			<div class="controls">
-			  <input type="text"  name="mobile" id="mobile" placeholder="Celular"/> 
+			  <input type="text"  name="txtTelefono2" id="txtTelefono2"/><span>Sin guiones, solo número. Opcional.</span>
 			</div>
 		</div>
 		
@@ -322,8 +298,6 @@
 	
 	<div class="control-group">
 			<div class="controls">
-				<input type="hidden" name="email_create" value="1">
-				<input type="hidden" name="is_new_customer" value="1">
 				<input class="btn btn-large btn-success" type="submit" value="Registrar" />
 			</div>
 		</div>		
@@ -334,8 +308,6 @@
 </div>
 </div>
 </div>
-<!-- MainBody End ============================= -->
-<!-- Footer ================================================================== -->
 	<div  id="footerSection">
 	<div class="container">
 		<div class="row">
