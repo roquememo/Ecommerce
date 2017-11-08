@@ -37,12 +37,11 @@
 </a>
   <div class="navbar-inner">
     <a class="brand" href="index.html"><img src="imagenes/LOGO1.png" width="100px" height="120px"/></a>
-		<form class="form-inline navbar-search" method="post" action="productos.html" >
-		<input id="srchFld" class="srchTxt" type="text" />
+		<div class="form-inline navbar-search">
 		<!-- controlador carga en un select las categorias -->
-		<select id="select-categorias" class="srchTxt"></select>
+		<select id="select-categorias" class="srchTxt"><option value="0" >Todo</option></select>
 		  <button type="submit" id="submitButton" class="btn btn-primary">Ir</button>
-    </form>
+    </div>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="normal.html">FAQ</a></li>
 	 <li class=""><a href="contact.html">Contáctanos</a></li>
@@ -141,40 +140,12 @@
 	<div id="sidebar" class="span3">
 		<div class="well well-small"><a id="myCart" href="cesta.html"><img src="imagenes/ico-cart.png" alt="cart">3 artículos en su cesta  <span class="badge badge-warning pull-right">$155.00</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
-			<li class="subMenu open"><a> ELECTRONICS [230]</a>
-				<ul>
-				<li><a class="active" href="productos.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
+
+			<li class="subMenu open" ><a id="numero-categorias">CATEGORIAS</a>
+				<ul id="lateral-categorias">
+				
 				</ul>
 			</li>
-			<li class="subMenu"><a> CLOTHES [840] </a>
-			<ul style="display:none">
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li>
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Women's Shoes (8)</a></li>												
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Women's Hand Bags (5)</a></li>	
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Men's Clothings  (45)</a></li>
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Men's Shoes (6)</a></li>												
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Kids Clothing (5)</a></li>												
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Kids Shoes (3)</a></li>												
-			</ul>
-			</li>
-			<li class="subMenu"><a>FOOD AND BEVERAGES [1000]</a>
-				<ul style="display:none">
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Angoves  (35)</a></li>
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Bouchard Aine & Fils (8)</a></li>												
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>French Rabbit (5)</a></li>	
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Louis Bernard  (45)</a></li>
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>BIB Wine (Bag in Box) (8)</a></li>												
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Other Liquors & Wine (5)</a></li>												
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Garden (3)</a></li>												
-				<li><a href="productos.html"><i class="icon-chevron-right"></i>Khao Shong (11)</a></li>												
-			</ul>
-			</li>
-			<li><a href="productos.html">HEALTH & BEAUTY [18]</a></li>
-			<li><a href="productos.html">SPORTS & LEISURE [58]</a></li>
-			<li><a href="productos.html">BOOKS & ENTERTAINMENTS [14]</a></li>
 		</ul>
 		<br/>
 		  <div class="thumbnail">

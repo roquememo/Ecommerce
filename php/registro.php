@@ -1,5 +1,5 @@
 <?php 
-	include 'conexion2.php';
+	include 'conexion.php';
 	$dia = $_GET['cbxDia'];
 	$mes = $_GET['cbxMes'];
 	$ano = $_GET['cbxAno'];

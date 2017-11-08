@@ -64,7 +64,7 @@
 #lightbox-image-details-caption { font-weight: bold; }#lightbox-image-details-currentNumber {display: block; clear: left; padding-bottom: 1.0em;}
 #lightbox-secNav-btnClose {width: 66px; float: right;padding-bottom: 0.7em;	}
 /* ------------------------------- */
-.navbar-search .srchTxt {border-radius: 0;border: 1px solid #444;}
+.navbar-search .srchTxt {border-radius: 5;border: 0px solid #444; width: 350px}
 [class^="icon-"], [class*=" icon-"] {background-image: none;}
 .navbar .nav > li > a {padding:10px;color: #DDD;text-shadow: none;font-size: 16px;}
 .navbar .nav > li > a:hover{color:#fff}

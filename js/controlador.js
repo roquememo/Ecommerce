@@ -1,11 +1,30 @@
 $(document).ready(function(){
+	//Cargar categorias a barra de categorias y columna categorias
+	$.ajax({
+		url:"php/consultas.php?consulta=1",
+		method:"GET",
+		date:"",
+		datatype:"json",
+		success:function(respuesta){
+			var hasta=respuesta.length;
+			var obj=$.parseJSON(respuesta);
+			var count = 0;
+			while (obj[count]) {
+			    count++;
+			}
+			$('#numero-categorias').append('['+count+']');
+			for (i = 0; i <=hasta; i++) {
+				$("#select-categorias").append('<option value="'+obj[i]['id']+'" >'
+					+obj[i]['nombre']+'</option>');
+				$('#lateral-categorias').append('<li><a class="active" href="productos.html">'+
+					'<i class="icon-chevron-right"></i>'+obj[i]['nombre']+'</a></li>');
+			}
 
-	$("#select-categorias").html('<option>Todo</option>'+
-		'<option>Ropa</option>'+
-		'<option>Comida y Bebidas </option>'+
-		'<option>Salud y Belleza </option>'+
-		'<option>Deportes </option>'+
-		'<option>Libros y Entretenimiento </option>');
+		},
+		error:function(){
+
+		}
+	});
 
 	$.ajax({
 		url:"php/sesion.php",
