@@ -1,7 +1,7 @@
 <?php 
 
 $usuario = "root";
-$password = "conejomemo1";
+$password = "password";//"conejomemo1";
 $servidor = "localhost";
 $basededatos = "ecommerce";
 

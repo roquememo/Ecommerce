@@ -1,10 +1,33 @@
 $(document).ready(function(){
-	//Cargar categorias a barra de categorias y columna categorias
+	$.ajax({
+ 		url:"php/consultas.php?consulta=1",
+ 		method:"GET",
+ 		date:"",
+ 		datatype:"json",
+ 		success:function(respuesta){
+	 			var hasta=respuesta.length;
+	 			var obj=$.parseJSON(respuesta);
+	 			var count = 0;
+	 			while (obj[count]) {
+	 			    count++;
+	 			}
+	 			$('#numero-categorias').append('['+count+']');
+	 			for (i = 0; i <=hasta; i++) {
+	 				$("#select-categorias").append('<option value="'+obj[i]['id']+'" >'
+	 					+obj[i]['nombre']+'</option>');
+	 				$('#lateral-categorias').append('<li><a class="active" href="productos.html">'+
+	 					'<i class="icon-chevron-right"></i>'+obj[i]['nombre']+'</a></li>');
+				}
+ 		},
+		error:function(){
+			alert("error");
+		}
+	});
 	$.ajax({
 		url:"php/consultas.php?consulta=2",
 		method:"GET",
 		date:"",
-		datatype:"html",
+		datatype:"json",
 		success:function(respuesta){
 			var hasta=respuesta.length;
 			var obj=$.parseJSON(respuesta);
@@ -13,7 +36,7 @@ $(document).ready(function(){
 					$("#destacados1").append('<li class="span3">'+
 				  		'<div class="thumbnail">'+
 				  		'<i class="tag"></i>'+
-						'<a href="productodetalles.html"><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
+						'<a href="productodetalles.html?valor="><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
 						'<div class="caption">'+
 					  	'<h5>'+obj[i]['nombre']+'</h5>'+
 					  	'<h4><a class="btn" href="productodetalles.html">VER</a>'+
@@ -67,6 +90,7 @@ $(document).ready(function(){
 				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> [ 3 ] Artículos en tu cesta');
 				$("#btn-principal").prepend('<a href="php/destruir.php" role="button" style="padding-right:0">'+
 					'<span class="btn btn-large btn-success">Salir</span></a>');
+
 			}else{
 				$("#bienvenido").html("Usuario");
 				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> Sin Artículos en cesta');
@@ -78,8 +102,6 @@ $(document).ready(function(){
 
 		}
 	});
-
-
 
 });
 $("#iii").click(function(){
