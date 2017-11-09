@@ -29,7 +29,7 @@ CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_categoria` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE `compras` (
@@ -54,16 +54,17 @@ CREATE TABLE `direccion` (
   `telefono2` varchar(45) DEFAULT NULL,
   `observaciones` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE `foto_producto` (
   `id_foto` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(259) DEFAULT NULL,
   `id_producto` int(11) NOT NULL,
+  `principal` int(11) NOT NULL,
   PRIMARY KEY (`id_foto`,`id_producto`),
   KEY `fk_foto_producto_productos1_idx` (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE `productos` (
@@ -71,13 +72,13 @@ CREATE TABLE `productos` (
   `nombre` varchar(45) DEFAULT NULL,
   `precio` double DEFAULT NULL,
   `cantidad` int(11) DEFAULT NULL,
-  `descripcion` varchar(120) DEFAULT NULL,
+  `descripcion` varchar(400) DEFAULT NULL,
   `peso` double DEFAULT NULL,
   `modelo` varchar(45) DEFAULT NULL,
   `id_categoria` int(11) NOT NULL,
   PRIMARY KEY (`id_producto`,`id_categoria`),
   KEY `fk_productos_categoria1_idx` (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE `usuario` (
@@ -93,4 +94,4 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 
--- 2017-11-05 18:26:39
+-- 2017-11-09 07:34:27

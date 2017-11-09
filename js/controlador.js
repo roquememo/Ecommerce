@@ -1,28 +1,57 @@
 $(document).ready(function(){
 	//Cargar categorias a barra de categorias y columna categorias
 	$.ajax({
-		url:"php/consultas.php?consulta=1",
+		url:"php/consultas.php?consulta=2",
 		method:"GET",
 		date:"",
-		datatype:"json",
+		datatype:"html",
 		success:function(respuesta){
 			var hasta=respuesta.length;
 			var obj=$.parseJSON(respuesta);
-			var count = 0;
-			while (obj[count]) {
-			    count++;
-			}
-			$('#numero-categorias').append('['+count+']');
-			for (i = 0; i <=hasta; i++) {
-				$("#select-categorias").append('<option value="'+obj[i]['id']+'" >'
-					+obj[i]['nombre']+'</option>');
-				$('#lateral-categorias').append('<li><a class="active" href="productos.html">'+
-					'<i class="icon-chevron-right"></i>'+obj[i]['nombre']+'</a></li>');
+			for (var i = 0; i <12; i++) {
+				if(i<4){
+					$("#destacados1").append('<li class="span3">'+
+				  		'<div class="thumbnail">'+
+				  		'<i class="tag"></i>'+
+						'<a href="productodetalles.html"><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
+						'<div class="caption">'+
+					  	'<h5>'+obj[i]['nombre']+'</h5>'+
+					  	'<h4><a class="btn" href="productodetalles.html">VER</a>'+
+					  	'<span class="pull-right">LPS '+obj[i]['precio']+'</span></h4>'+
+						'</div>'+
+				  		'</div>'+
+						'</li>');
+				}else if(i<8){
+					$("#destacados2").append('<li class="span3">'+
+				  		'<div  class="thumbnail">'+
+				  		'<i class="tag"></i>'+
+						'<a href="productodetalles.html"><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
+						'<div class="caption">'+
+					  	'<h5>'+obj[i]['nombre']+'</h5>'+
+					  	'<h4><a class="btn" href="productodetalles.html">VER</a>'+
+					  	'<span class="pull-right">LPS '+obj[i]['precio']+'</span></h4>'+
+						'</div>'+
+				  		'</div>'+
+						'</li>');
+				}
+					$("#ul-productos").append('<li class="span3">'+
+				  		'<div class="thumbnail">'+
+						'<a  href="productodetalles.html"><img src="'+obj[i]['url']+'" alt=""/></a>'+
+						'<div class="caption">'+
+					  	'<h5>'+obj[i]['nombre']+'</h5>'+
+					  	'<h4 style="text-align:center"><a class="btn" href="productodetalles.html">'+
+					  	'<i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar '+
+					  	'<i class="icon-shopping-cart"></i></a> '+
+					  	'<a class="btn btn-primary" href="#">LPS '+obj[i]['precio']+'</a></h4>'+
+						'</div>'+
+				  		'</div>'+
+						'</li>');
+			
 			}
 
 		},
 		error:function(){
-
+			alert("error");
 		}
 	});
 
