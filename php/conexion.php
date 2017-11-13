@@ -1,7 +1,8 @@
 <?php 
 
 $usuario = "root";
-$password = "password";//"conejomemo1";
+//$password = "password";
+$password = "conejomemo1";
 $servidor = "localhost";
 $basededatos = "ecommerce";
 

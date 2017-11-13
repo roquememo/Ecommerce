@@ -7,10 +7,7 @@ $(document).ready(function(){
  		success:function(respuesta){
 	 			var hasta=respuesta.length;
 	 			var obj=$.parseJSON(respuesta);
-	 			var count = 0;
-	 			while (obj[count]) {
-	 			    count++;
-	 			}
+	 			var count = Object.keys(obj).length;
 	 			$('#numero-categorias').append('['+count+']');
 	 			for (i = 0; i <=hasta; i++) {
 	 				$("#select-categorias").append('<option value="'+obj[i]['id']+'" >'
@@ -36,10 +33,10 @@ $(document).ready(function(){
 					$("#destacados1").append('<li class="span3">'+
 				  		'<div class="thumbnail">'+
 				  		'<i class="tag"></i>'+
-						'<a href="productodetalles.html?valor="><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
+						'<a href="productodetalles.html?id='+obj[i]['id']+'"><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
 						'<div class="caption">'+
 					  	'<h5>'+obj[i]['nombre']+'</h5>'+
-					  	'<h4><a class="btn" href="productodetalles.html">VER</a>'+
+					  	'<h4><a class="btn" href="productodetalles.html?id='+obj[i]['id']+'">VER</a>'+
 					  	'<span class="pull-right">LPS '+obj[i]['precio']+'</span></h4>'+
 						'</div>'+
 				  		'</div>'+
@@ -48,10 +45,10 @@ $(document).ready(function(){
 					$("#destacados2").append('<li class="span3">'+
 				  		'<div  class="thumbnail">'+
 				  		'<i class="tag"></i>'+
-						'<a href="productodetalles.html"><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
+						'<a href="productodetalles.html?id='+obj[i]['id']+'"><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
 						'<div class="caption">'+
 					  	'<h5>'+obj[i]['nombre']+'</h5>'+
-					  	'<h4><a class="btn" href="productodetalles.html">VER</a>'+
+					  	'<h4><a class="btn" href="productodetalles.html?id='+obj[i]['id']+'">VER</a>'+
 					  	'<span class="pull-right">LPS '+obj[i]['precio']+'</span></h4>'+
 						'</div>'+
 				  		'</div>'+
@@ -59,10 +56,10 @@ $(document).ready(function(){
 				}
 					$("#ul-productos").append('<li class="span3">'+
 				  		'<div class="thumbnail">'+
-						'<a  href="productodetalles.html"><img src="'+obj[i]['url']+'" alt=""/></a>'+
+						'<a  href="productodetalles.html?id='+obj[i]['id']+'"><img src="'+obj[i]['url']+'" alt=""/></a>'+
 						'<div class="caption">'+
 					  	'<h5>'+obj[i]['nombre']+'</h5>'+
-					  	'<h4 style="text-align:center"><a class="btn" href="productodetalles.html">'+
+					  	'<h4 style="text-align:center"><a class="btn" href="productodetalles.html?id='+obj[i]['id']+'">'+
 					  	'<i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar '+
 					  	'<i class="icon-shopping-cart"></i></a> '+
 					  	'<a class="btn btn-primary" href="#">LPS '+obj[i]['precio']+'</a></h4>'+
