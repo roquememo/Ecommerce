@@ -74,7 +74,11 @@ if (isset($_GET['consulta'])) {
 
 			if (isset($_GET['cate'])) {
 			$id=$_GET['cate'];
-			$consulta="SELECT  id_producto,nombre,precio FROM productos where id_categoria=".$id;
+			if($id==0){
+				$consulta="SELECT  id_producto,nombre,precio,descripcion FROM productos";
+			}else{
+				$consulta="SELECT  id_producto,nombre,precio,descripcion FROM productos where id_categoria=".$id;
+			}
 			$stmt = $mysqli->query($consulta);
 			$con=array();
 			$n=0;
@@ -85,6 +89,7 @@ if (isset($_GET['consulta'])) {
 				$con[$n]['id']=$row[0];
 				$con[$n]['nombre']=$row[1];
 				$con[$n]['precio']=$row[2];
+				$con[$n]['descripcion']=$row[3];
 				$con[$n]['url']=$row2[0];
 				$n++;
 			}

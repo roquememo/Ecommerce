@@ -15,6 +15,9 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 		$_SESSION['correo']=$row['correo'];
 		$_SESSION['cumple']=$row['fecha_nac'];
 		$_SESSION['direccion']=$row['id_direccion'];
+		if (isset($_GET['param'])) {
+			header('location:../index.html');
+		}
 	}
 	else{
 		echo "Datos incorrectos";

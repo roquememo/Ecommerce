@@ -5,14 +5,13 @@ $(document).ready(function(){
  		date:"",
  		datatype:"json",
  		success:function(respuesta){
-	 			var hasta=respuesta.length;
 	 			var obj=$.parseJSON(respuesta);
 	 			var count = Object.keys(obj).length;
 	 			$('#numero-categorias').append('['+count+']');
-	 			for (i = 0; i <=hasta; i++) {
+	 			for (i = 0; i <count; i++) {
 	 				$("#select-categorias").append('<option value="'+obj[i]['id']+'" >'
 	 					+obj[i]['nombre']+'</option>');
-	 				$('#lateral-categorias').append('<li><a class="active" href="productos.html">'+
+	 				$('#lateral-categorias').append('<li><a class="active" href="productos.html?cate='+obj[i]['id']+'">'+
 	 					'<i class="icon-chevron-right"></i>'+obj[i]['nombre']+'</a></li>');
 				}
  		},
@@ -125,4 +124,9 @@ $("#iii").click(function(){
 		});
 	}
 	
+});
+
+$("#submitButton").click(function(){
+	var url= 'productos.html?cate='+$("#select-categorias").val();
+	$(location).attr('href',url);
 });

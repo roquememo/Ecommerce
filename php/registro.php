@@ -41,5 +41,5 @@
 	 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', $id_direccion)";
 	mysqli_query($mysqli, $sql2);
 	mysqli_close($mysqli);
-
+	header('location:login.php?correo='.$correo.'&password='.$password.'&param=1');
 ?>

@@ -2,7 +2,7 @@
 
 $usuario = "root";
 //$password = "password";
-$password = "conejomemo1";
+$password = "password";
 $servidor = "localhost";
 $basededatos = "ecommerce";
 
