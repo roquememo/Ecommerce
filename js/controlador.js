@@ -36,7 +36,7 @@ $(document).ready(function(){
 					$("#destacados1").append('<li class="span3">'+
 				  		'<div class="thumbnail">'+
 				  		'<i class="tag"></i>'+
-						'<a href="productodetalles.html?valor="><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
+						'<a href="productodetalles.html?valor="><img src="'+obj[i]['url']+'" width="160" height="160"></a>'+
 						'<div class="caption">'+
 					  	'<h5>'+obj[i]['nombre']+'</h5>'+
 					  	'<h4><a class="btn" href="productodetalles.html">VER</a>'+
@@ -48,7 +48,7 @@ $(document).ready(function(){
 					$("#destacados2").append('<li class="span3">'+
 				  		'<div  class="thumbnail">'+
 				  		'<i class="tag"></i>'+
-						'<a href="productodetalles.html"><img width="160px" height="160px" src="'+obj[i]['url']+'" alt=""></a>'+
+						'<a href="productodetalles.html"><img width="300" height="300" src="'+obj[i]['url']+'" alt=""></a>'+
 						'<div class="caption">'+
 					  	'<h5>'+obj[i]['nombre']+'</h5>'+
 					  	'<h4><a class="btn" href="productodetalles.html">VER</a>'+
