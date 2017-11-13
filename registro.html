@@ -47,6 +47,7 @@
 	 <li class=""><a href="contact.html">Contáctanos</a></li>
 	 <li id="btn-principal" class="">
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+		  <!-- Modal de registro/iniciar sesión -->
 		  <div class="modal-header">
 			<button type="button" 
 			class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -54,14 +55,16 @@
 		  </div>
 		  <div class="modal-body">
 			  <div class="control-group">								
-				<input type="text" id="inputemail" placeholder="Correo">
+				<input type="email" id="inputemail" placeholder="Correo">
 			  </div>
 			  <div class="control-group">
 				<input type="password" id="inputpassword" placeholder="Contraseña">
 			  </div>
 			  <label id="error" style="color:#EF340C;"></label>
 			<input type="button" id="iii" value="Iniciar sesión" class="btn btn-success">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
+			¿Aún no tienes cuenta? &nbsp;	
+			<a href="registro.html"><input type="button" id="iii" value="Regístrate" class="btn btn-success"></a>
 		  </div>
 	</div>
 	</li>
@@ -74,31 +77,31 @@
 	<div class="container">
 	<div class="row">
 	<div id="sidebar" class="span3">
-		<div class="well well-small"><a id="myCart" href="cesta.html"><img src="imagenes/ico-cart.png" alt="cart">3 Artículos en tu cesta <span class="badge badge-warning pull-right">$155.00</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+
 			<li class="subMenu open" ><a id="numero-categorias">CATEGORIAS</a>
 				<ul id="lateral-categorias">
-				
+					<!-- Categorías se importan de la base de datos -->
 				</ul>
 			</li>
 		</ul>
 		<br/>
 		  <div class="thumbnail">
-			<img src="imagenes/products/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
+			<img src="imagenes/productos/TV.jpeg"/>
 			<div class="caption">
-			  <h5>Panasonic</h5>
-				<h4 style="text-align:center"><a class="btn" href="cesta.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+			  <h5>TV LED 4K</h5>
+				<h4 style="text-align:center"><a class="btn" href="productodetalles.html?id=5"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">L.50000</a></h4>
 			</div>
 		  </div><br/>
 			<div class="thumbnail">
-				<img src="imagenes/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
+				<img src="imagenes/productos/panasonic.jpg">
 				<div class="caption">
-				  <h5>Kindle</h5>
-				    <h4 style="text-align:center"><a class="btn" href="cesta.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+				  <h5>Cámara Panasonic</h5>
+				    <h4 style="text-align:center"><a class="btn" href="productodetalles.html?id=1"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar<i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">L.6000</a></h4>
 				</div>
 			  </div><br/>
 			<div class="thumbnail">
-				<img src="imagenes/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+				<img src="imagenes/payment_methods.png">
 				<div class="caption">
 				  <h5>Métodos de Pago</h5>
 				</div>
@@ -111,7 +114,7 @@
     </ul>
 	<h3> Registrarse</h3>	
 	<div class="well">
-	<form class="form-horizontal" method="GET" action="php/registro.php">
+	<form name="formulario" id="formulario" class="form-horizontal" method="GET" action="php/registro.php">
 		<h4>Información Personal</h4>
 		<div class="control-group">
 			<label class="control-label" for="txtNombre">Nombre<sup>*</sup></label>
@@ -140,7 +143,7 @@
 		<div class="control-group">
 		<label class="control-label">Fecha de Nacimiento <sup>*</sup></label>
 		<div class="controls">
-		  <select class="span1" id="cbxDia" name="cbxDia">
+		  <select class="span1" id="cbxDia" name="cbxDia" required>
 				<option value="">DIA</option>
 					<option value="01">1&nbsp;&nbsp;</option>
 					<option value="02">2&nbsp;&nbsp;</option>
@@ -174,7 +177,7 @@
 					<option value="30">30&nbsp;&nbsp;</option>
 					<option value="31">31&nbsp;&nbsp;</option>
 			</select>
-			<select class="span1" id="cbxMes" name="cbxMes">
+			<select class="span1" id="cbxMes" name="cbxMes" required>
 				<option value="">MES</option>
 					<option value="01">1&nbsp;&nbsp;</option>
 					<option value="02">2&nbsp;&nbsp;</option>
@@ -189,7 +192,7 @@
 					<option value="11">11&nbsp;&nbsp;</option>
 					<option value="12">12&nbsp;&nbsp;</option>
 			</select>
-			<select class="span1" id="cbxAno" name="cbxAno">
+			<select class="span1" id="cbxAno" name="cbxAno" required>
 				<option value="">AÑO</option>
 					<option value="1990">1990&nbsp;&nbsp;</option>
 					<option value="1991">1991&nbsp;&nbsp;</option>
@@ -215,7 +218,7 @@
 		</div>
 		
 		<div class="control-group">
-			<label class="control-label" for="txtDireccion2">Dirección (Línea 2)<sup>*</sup></label>
+			<label class="control-label" for="txtDireccion2">Dirección (Línea 2)<sup></sup></label>
 			<div class="controls">
 			  <input type="text" id="txtDireccion2" name="txtDireccion2"/> <span>Observaciones.</span>
 			</div>
@@ -229,12 +232,12 @@
 		<div class="control-group">
 			<label class="control-label" for="cbxDepartamento">Departamento<sup>*</sup></label>
 			<div class="controls">
-			  <select id="cbxDepartamento" name="cbxDepartamento">
-				<option value="">-</option>
-				<option value="1">Francisco Morazán</option>
-				<option value="2">Cortés</option>
-				<option value="3">Comayagua</option>
+			  <select id="cbxDepartamento" name="cbxDepartamento" required>
+			    <option value="">-</option>
 				<option value="4">Choluteca</option>
+				<option value="3">Comayagua</option>
+				<option value="2">Cortés</option>
+				<option value="1">Francisco Morazán</option>
 				<option value="5">Olancho</option>
 			</select>
 			</div>
@@ -242,20 +245,20 @@
 		<div class="control-group">
 			<label class="control-label" for="txtInformacion">Información Adicional</label>
 			<div class="controls">
-			  <input type="text" id="txtInformacion" name="txtInformacion" placeholder="Información adicional"/>
+			  <input type="text" id="txtInformacion" name="txtInformacion"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="txtTelefono">Teléfono<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text"  name="txtTelefono" id="txtTelefono" required/><span><span>Sin guiones, solo número. Obligatorio.</span>
+			  <input type="number" name="txtTelefono" id="txtTelefono" required/><span><span>Sin guiones, solo número. Obligatorio.</span>
 			</div>
 		</div>
 		
 		<div class="control-group">
 			<label class="control-label" for="txtTelefono2">Teléfono secundario </label>
 			<div class="controls">
-			  <input type="text"  name="txtTelefono2" id="txtTelefono2"/><span>Sin guiones, solo número. Opcional.</span>
+			  <input type="number" name="txtTelefono2" id="txtTelefono2" /><span>Sin guiones, solo número. Opcional.</span>
 			</div>
 		</div>
 		
@@ -263,7 +266,7 @@
 	
 	<div class="control-group">
 			<div class="controls">
-				<input class="btn btn-large btn-success" type="submit" value="Registrar" />
+				<input class="btn btn-large btn-success" onclick="validar()" type="submit" value="Registrar" />
 			</div>
 		</div>		
 	</form>
@@ -313,6 +316,20 @@
 	<script src="js/google-code-prettify/prettify.js"></script>	
 	<script src="js/bootshop.js"></script>
     <script src="js/jquery.lightbox-0.5.js"></script>
+    <script src="js/controlador.js"></script>
+    <script>
+    	function validar(){
+		if(document.getElementById('txtTelefono').value.length < 8) {
+			alert('El campo debe tener al menos 8 carácteres.');
+			}else{
+			document.getElementById('formulario').submit();
+		}
+	}
+    </script>
+   
+</script>
+
+
 	
 </body>
 </html>

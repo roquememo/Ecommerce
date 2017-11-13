@@ -47,6 +47,7 @@
 	 <li class=""><a href="contact.html">Contáctanos</a></li>
 	 <li id="btn-principal" class="">
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+		  <!-- Modal de registro/iniciar sesión -->
 		  <div class="modal-header">
 			<button type="button" 
 			class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -54,14 +55,16 @@
 		  </div>
 		  <div class="modal-body">
 			  <div class="control-group">								
-				<input type="text" id="inputemail" placeholder="Correo">
+				<input type="email" id="inputemail" placeholder="Correo">
 			  </div>
 			  <div class="control-group">
 				<input type="password" id="inputpassword" placeholder="Contraseña">
 			  </div>
 			  <label id="error" style="color:#EF340C;"></label>
 			<input type="button" id="iii" value="Iniciar sesión" class="btn btn-success">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
+			¿Aún no tienes cuenta? &nbsp;	
+			<a href="registro.html"><input type="button" id="iii" value="Regístrate" class="btn btn-success"></a>
 		  </div>
 	</div>
 	</li>
@@ -74,33 +77,33 @@
 	<div class="container">
 	<div class="row">
 	<div id="sidebar" class="span3">
-		<div class="well well-small"><a id="myCart" href="cesta.html"><img src="imagenes/ico-cart.png" alt="cart">3 Items in your cart  <span class="badge badge-warning pull-right">$155.00</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+
 			<li class="subMenu open" ><a id="numero-categorias">CATEGORIAS</a>
 				<ul id="lateral-categorias">
-				
+					<!-- Categorías se importan de la base de datos -->
 				</ul>
 			</li>
 		</ul>
 		<br/>
 		  <div class="thumbnail">
-			<img src="imagenes/productos/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
+			<img src="imagenes/productos/TV.jpeg"/>
 			<div class="caption">
-			  <h5>Panasonic</h5>
-				<h4 style="text-align:center"><a class="btn" href="productodetalles.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+			  <h5>TV LED 4K</h5>
+				<h4 style="text-align:center"><a class="btn" href="productodetalles.html?id=5"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">L.50000</a></h4>
 			</div>
 		  </div><br/>
 			<div class="thumbnail">
-				<img src="imagenes/productos/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
+				<img src="imagenes/productos/panasonic.jpg">
 				<div class="caption">
-				  <h5>Kindle</h5>
-				    <h4 style="text-align:center"><a class="btn" href="productodetalles.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+				  <h5>Cámara Panasonic</h5>
+				    <h4 style="text-align:center"><a class="btn" href="productodetalles.html?id=1"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar<i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">L.6000</a></h4>
 				</div>
 			  </div><br/>
 			<div class="thumbnail">
-				<img src="imagenes/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+				<img src="imagenes/payment_methods.png">
 				<div class="caption">
-				  <h5>Payment Methods</h5>
+				  <h5>Métodos de Pago</h5>
 				</div>
 			  </div>
 	</div>
