@@ -5,7 +5,15 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+INSERT INTO `carrito` (`id_carrito`, `estado`, `id_usuario`) VALUES
+(1,	1,	1)
+ON DUPLICATE KEY UPDATE `id_carrito` = VALUES(`id_carrito`), `estado` = VALUES(`estado`), `id_usuario` = VALUES(`id_usuario`);
 
+INSERT INTO `carrito_productos` (`id_carrito`, `id_producto`, `cantidad`) VALUES
+(1,	4,	2),
+(1,	5,	3),
+(1,	6,	1)
+ON DUPLICATE KEY UPDATE `id_carrito` = VALUES(`id_carrito`), `id_producto` = VALUES(`id_producto`), `cantidad` = VALUES(`cantidad`);
 
 INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`) VALUES
 (1,	'Ropa'),
@@ -70,4 +78,4 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `correo`, `password`,
 (1,	'nuevo',	'perez',	'nuevo@gmail.com',	'hola',	NULL,	1)
 ON DUPLICATE KEY UPDATE `id_usuario` = VALUES(`id_usuario`), `nombre` = VALUES(`nombre`), `apellido` = VALUES(`apellido`), `correo` = VALUES(`correo`), `password` = VALUES(`password`), `fecha_nac` = VALUES(`fecha_nac`), `id_direccion` = VALUES(`id_direccion`);
 
--- 2017-11-09 07:35:52
+-- 2017-11-14 03:09:16
