@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include 'conexion.php';
 if (isset($_GET['consulta'])) {
 	$eleccion=$_GET['consulta'];
@@ -90,7 +91,7 @@ if (isset($_GET['consulta'])) {
 				$con[$n]['nombre']=$row[1];
 				$con[$n]['precio']=$row[2];
 				$con[$n]['descripcion']=$row[3];
-				$con[$n]['url']=$row2[0];
+				$con[$n]['url']=$row2[0];	
 				$n++;
 			}
 			$stmt->close();
@@ -100,6 +101,35 @@ if (isset($_GET['consulta'])) {
 			}else{
 				echo "No se envio id";
 			}
+
+			break;
+		case 5:
+		if (isset($_SESSION['id'])) {
+			$id=$_SESSION['id'];
+			$consulta="SELECT a.id_producto,a.cantidad,b.estado,c.nombre,c.precio,d.url FROM carrito_productos as a,carrito as b,productos as c,foto_producto as d WHERE (a.id_carrito=b.id_carrito) and (a.id_producto=c.id_producto) and (c.id_producto=d.id_producto) and d.principal=1 and b.id_usuario=".$id;
+			$stmt = $mysqli->query($consulta);
+			$con=array();
+			$n=0;
+			while ($row=$stmt->fetch_row()) {			
+				$con[$n]['id_producto']=$row[0];
+				$con[$n]['cantidad']=$row[1];
+				$con[$n]['estado']=$row[2];
+				$con[$n]['nombre']=$row[3];
+				$con[$n]['precio']=$row[4];
+				$con[$n]['url']=$row[5];
+				$n++;
+			}
+			$stmt->close();
+			if (isset($_GET['carrito'])) {
+				echo $n;
+			} else {
+				$valor=json_encode($con,JSON_UNESCAPED_SLASHES,JSON_UNESCAPED_UNICODE);
+				echo $valor;
+			}
+			
+		}else{
+			echo "0";
+		}
 
 			break;
 

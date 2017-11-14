@@ -1,5 +1,24 @@
 $(document).ready(function(){
 	$.ajax({
+ 		url:"php/consultas.php?consulta=5&carrito=1",
+ 		method:"GET",
+ 		date:"",
+ 		datatype:"html",
+ 		success:function(respuesta){
+ 			var url = window.location;
+ 			if(respuesta==0){
+ 				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> Sin Artículos en cesta');
+ 				$("#a-cesta").attr('href','cesta.html?ref='+url);
+ 			}else{
+	 			$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> ['+respuesta+'] Artículos en tu cesta');
+	 			$("#a-cesta").attr('href','cesta.html');
+ 			}
+ 		},
+		error:function(){
+			alert("error");
+		}
+	});
+	$.ajax({
  		url:"php/consultas.php?consulta=1",
  		method:"GET",
  		date:"",
@@ -83,13 +102,11 @@ $(document).ready(function(){
 			if(!(respuesta=="error")){
 				var obj = $.parseJSON(respuesta);
 				$("#bienvenido").html(obj.nombre);
-				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> [ 3 ] Artículos en tu cesta');
 				$("#btn-principal").prepend('<a href="php/destruir.php" role="button" style="padding-right:0">'+
 					'<span class="btn btn-large btn-success">Salir</span></a>');
 
 			}else{
 				$("#bienvenido").html("Usuario");
-				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> Sin Artículos en cesta');
 				$("#btn-principal").prepend('<a href="#login" role="button" data-toggle="modal" style="padding-right:0">'+
 					'<span class="btn btn-large btn-success">Entrar</span></a>');
 			}
