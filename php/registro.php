@@ -4,7 +4,6 @@
 	$mes = $_GET['cbxMes'];
 	$ano = $_GET['cbxAno'];
 	$fecha_nac=$ano."-".$mes."-".$dia;
-	echo $fecha_nac;
 	$indiceDepartamento = $_GET['cbxDepartamento'];
 	$departamento="";
 	if($indiceDepartamento == 1){
@@ -32,14 +31,25 @@
 	$telefono1 = $_GET['txtTelefono'];
 	$telefono2 = $_GET['txtTelefono2'];
 	$observaciones = $_GET['txtInformacion'];
-	$sql = "INSERT INTO direccion (nombre_direccion, direccion_2, ciudad, departamento, telefono1, telefono2, observaciones) VALUES ('$nombre_direccion', '$direccion2', '$ciudad', '$departamento', $telefono1, $telefono2,'$observaciones')";
-	mysqli_query($mysqli, $sql);
-	$respuesta = mysqli_query($mysqli, "SELECT id_direccion FROM direccion order by id_direccion desc limit 1");
-	$fila = mysqli_fetch_array($respuesta, MYSQL_NUM); 
-    $id_direccion=$fila[0];
-	$sql2 = "INSERT INTO usuario (nombre, apellido, correo, password, fecha_nac, id_direccion) 
-	 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', $id_direccion)";
-	mysqli_query($mysqli, $sql2);
-	mysqli_close($mysqli);
-	header('location:login.php?correo='.$correo.'&password='.$password.'&param=1');
+	$tamañoTelefono = strlen(($telefono1)); 
+	if ($tamañoTelefono != 8) {
+		echo '<script language="javascript">';
+		echo 'alert("El telefono debe tener 8 caracteres")';
+		echo '</script>';
+		header('location:../registro.html');
+
+	}
+	else{
+		$sql = "INSERT INTO direccion (nombre_direccion, direccion_2, ciudad, departamento, telefono1, telefono2, observaciones) VALUES ('$nombre_direccion', '$direccion2', '$ciudad', '$departamento', $telefono1, $telefono2,'$observaciones')";
+		mysqli_query($mysqli, $sql);
+		$respuesta = mysqli_query($mysqli, "SELECT id_direccion FROM direccion order by id_direccion desc limit 1");
+		$fila = mysqli_fetch_array($respuesta, MYSQL_NUM); 
+	    $id_direccion=$fila[0];
+		$sql2 = "INSERT INTO usuario (nombre, apellido, correo, password, fecha_nac, id_direccion) 
+		 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', $id_direccion)";
+		mysqli_query($mysqli, $sql2);
+		mysqli_close($mysqli);
+		header('location:login.php?correo='.$correo.'&password='.$password.'&param=1');
+
+	}
 ?>
