@@ -31,6 +31,7 @@
 	$telefono1 = $_GET['txtTelefono'];
 	$telefono2 = $_GET['txtTelefono2'];
 	$observaciones = $_GET['txtInformacion'];
+	$coordenates = $_GET['coords'];
 	$tamañoTelefono = strlen(($telefono1)); 
 	if ($tamañoTelefono != 8) {
 		echo '<script language="javascript">';
@@ -40,16 +41,20 @@
 
 	}
 	else{
-		$sql = "INSERT INTO direccion (nombre_direccion, direccion_2, ciudad, departamento, telefono1, telefono2, observaciones) VALUES ('$nombre_direccion', '$direccion2', '$ciudad', '$departamento', $telefono1, $telefono2,'$observaciones')";
-		mysqli_query($mysqli, $sql);
-		$respuesta = mysqli_query($mysqli, "SELECT id_direccion FROM direccion order by id_direccion desc limit 1");
-		$fila = mysqli_fetch_array($respuesta, MYSQL_NUM); 
-	    $id_direccion=$fila[0];
-		$sql2 = "INSERT INTO usuario (nombre, apellido, correo, password, fecha_nac, id_direccion) 
-		 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', $id_direccion)";
-		mysqli_query($mysqli, $sql2);
-		mysqli_close($mysqli);
-		header('location:login.php?correo='.$correo.'&password='.$password.'&param=1');
+		$sql = "INSERT INTO direccion (nombre_direccion, direccion_2, ciudad, departamento, telefono1, telefono2, observaciones, coordenada) VALUES ('$nombre_direccion', '$direccion2', '$ciudad', '$departamento', '$telefono1', '$telefono2', 	                    '$observaciones', '$coordenates')";
+		$zeus = $mysqli->query($sql);
+		
+		$respuesta = $mysqli->query("SELECT * FROM direccion order by id_direccion desc limit 1");		
+		$fila = mysqli_fetch_array($respuesta);
+	    $id_direccion=$fila['id_direccion'];
 
+		$sql2 = "INSERT INTO usuario (nombre, apellido, correo, password, fecha_nac, id_direccion) 
+		 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', '$id_direccion')";
+		
+		$otherwer = $mysqli->query($sql2);
+		
+		mysqli_close($mysqli);
+		header('location:login.php?correo='.$correo.'&password='.$password.'&coordenates='.$coordenates);
 	}
 ?>
+
