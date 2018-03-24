@@ -15,7 +15,7 @@ $(document).ready(function(){
  			}
  		},
 		error:function(){
-			alert("error");
+			alert("error 1");
 		}
 	});
 	$.ajax({
@@ -35,7 +35,7 @@ $(document).ready(function(){
 				}
  		},
 		error:function(){
-			alert("error");
+			alert("error 2");
 		}
 	});
 	$.ajax({
@@ -89,7 +89,7 @@ $(document).ready(function(){
 
 		},
 		error:function(){
-			alert("error");
+			alert("error 3");
 		}
 	});
 
