@@ -4,6 +4,11 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 	
 	$user=inputSeguro($mysqli,$_GET['correo']);
 	$pass=inputSeguro($mysqli,$_GET['password']);
+	
+	$coordenates  = null;
+	$coordenates = $_GET['coordenates'];
+	$target = null;
+
 	$consulta="SELECT * FROM usuario WHERE correo='".$user."' AND password= '".$pass."'";
 	$stmt = $mysqli->query($consulta);
 
@@ -15,9 +20,17 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 		$_SESSION['correo']=$row['correo'];
 		$_SESSION['cumple']=$row['fecha_nac'];
 		$_SESSION['direccion']=$row['id_direccion'];
-		if (isset($_GET['param'])) {
-			header('location:../index.html');
-		}
+
+		// Begin to update coordenates for the user! (Update coordenates for each session!)------------
+		$target = $row['id_direccion'];
+		$sql = "UPDATE direccion SET coordenada = '$coordenates' 
+		        WHERE id_direccion = '$target'";
+		$other = $mysqli->query($sql);
+		// End updating!----------------------------------------
+
+				
+		header('location:../index.html');
+
 	}
 	else{
 		echo "Datos incorrectos";
