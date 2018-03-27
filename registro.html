@@ -17,6 +17,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="imagenes/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="imagenes/ico/apple-touch-icon-57-precomposed.png">
 	<style type="text/css" id="enject"></style>
+	<link href="css/prueba.css" rel="stylesheet" type="text/css" />
   </head>
 <body>
 <div id="header">
@@ -61,10 +62,10 @@
 				<input type="password" id="inputpassword" placeholder="Contraseña">
 			  </div>
 			  <label id="error" style="color:#EF340C;"></label>
-			<input type="button" id="iii" value="Iniciar sesión" class="btn btn-success">
+			<input type="button" id="registro" value="Iniciar sesión" class="btn btn-success">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
 			¿Aún no tienes cuenta? &nbsp;	
-			<a href="registro.html"><input type="button" id="iii" value="Regístrate" class="btn btn-success"></a>
+			<a href="registro.html"><input type="button" id="" value="Regístrate" class="btn btn-success"></a>
 		  </div>
 	</div>
 	</li>
@@ -114,36 +115,40 @@
     </ul>
 	<h3> Registrarse</h3>	
 	<div class="well">
-	<form name="formulario" id="formulario" class="form-horizontal" method="GET" action="php/registro.php">
+	<form name="formulario" id="formulario" class="form-horizontal">
 		<h4>Información Personal</h4>
 		<div class="control-group">
 			<label class="control-label" for="txtNombre">Nombre<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" required>
+			  <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" >
+			  <div id="nombre" style="color: red;"></div>
 			</div>
 		 </div>
 		 <div class="control-group">
 			<label class="control-label" for="txtApellido">Apellidos <sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="txtApellido" name="txtApellido" placeholder="Apellidos" required>
+			  <input type="text" id="txtApellido" name="txtApellido" placeholder="Apellidos" >
+			  <div id="apellido" style="color: red;"></div>
 			</div>
 		 </div>
 		<div class="control-group">
 		<label class="control-label" for="txtEmail">Correo <sup>*</sup></label>
 		<div class="controls">
-		  <input type="email" id="txtEmail" name="txtEmail" placeholder="Correo" required>
+		  <input type="email" id="txtEmail" name="txtEmail" placeholder="Correo" >
+		  <div id ="capchas" style="color: red;"></div>
 		</div>
 	  </div>	  
 	<div class="control-group">
 		<label class="control-label" for="txtContrasena">Contraseña <sup>*</sup></label>
 		<div class="controls">
-		  <input type="password" id="txtContrasena" name="txtContrasena" placeholder="Contraseña" required>
+		  <input type="password" id="txtContrasena" name="txtContrasena" placeholder="Contraseña" >
+		  <div id ="contrasena" style="color: red;"></div>
 		</div>
 	  </div>	  
 		<div class="control-group">
 		<label class="control-label">Fecha de Nacimiento <sup>*</sup></label>
 		<div class="controls">
-		  <select class="span1" id="cbxDia" name="cbxDia" required>
+		  <select class="span1" id="cbxDiaa" name="cbxDiaa" >
 				<option value="">DIA</option>
 					<option value="01">1&nbsp;&nbsp;</option>
 					<option value="02">2&nbsp;&nbsp;</option>
@@ -177,7 +182,7 @@
 					<option value="30">30&nbsp;&nbsp;</option>
 					<option value="31">31&nbsp;&nbsp;</option>
 			</select>
-			<select class="span1" id="cbxMes" name="cbxMes" required>
+			<select class="span1" id="cbxMess" name="cbxMess" >
 				<option value="">MES</option>
 					<option value="01">1&nbsp;&nbsp;</option>
 					<option value="02">2&nbsp;&nbsp;</option>
@@ -192,7 +197,7 @@
 					<option value="11">11&nbsp;&nbsp;</option>
 					<option value="12">12&nbsp;&nbsp;</option>
 			</select>
-			<select class="span1" id="cbxAno" name="cbxAno" required>
+			<select class="span1" id="cbxAnoo" name="cbxAnoo" >
 				<option value="">AÑO</option>
 					<option value="1990">1990&nbsp;&nbsp;</option>
 					<option value="1991">1991&nbsp;&nbsp;</option>
@@ -205,6 +210,7 @@
 					<option value="1998">1998&nbsp;&nbsp;</option>
 					<option value="1999">1999&nbsp;&nbsp;</option>
 			</select>
+			<div id ="fecha" style="color: red;"></div>
 		</div>
 	  </div>
 	  	<br>
@@ -213,7 +219,8 @@
 		<div class="control-group">
 			<label class="control-label" for="txtDireccion">Dirección<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="txtDireccion" name="txtDireccion" placeholder="Dirección" required/><span>Calle, avenida, zona</span>
+			  <input type="text" id="txtDireccion" name="txtDireccion" placeholder="Dirección" /><span>Calle, avenida, zona</span>
+			  <div id ="direccion" style="color: red;"></div>
 			</div>
 		</div>
 		
@@ -226,23 +233,38 @@
 		<div class="control-group">
 			<label class="control-label" for="txtCiudad">Ciudad<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="txtCiudad" name="txtCiudad" placeholder="Ciudad" required/> 
+			  <input type="text" id="txtCiudad" name="txtCiudad" placeholder="Ciudad" /> 
+			  <div id="ciudad" style="color: red;"></div>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="cbxDepartamento">Departamento<sup>*</sup></label>
 			<div class="controls">
-			  <select id="cbxDepartamento" name="cbxDepartamento" required>
+			  <select id="cbxDepartamento" name="cbxDepartamento" >
 			    <option value="">-</option>
 				<option value="4">Choluteca</option>
 				<option value="3">Comayagua</option>
 				<option value="2">Cortés</option>
 				<option value="1">Francisco Morazán</option>
 				<option value="5">Olancho</option>
+				<option value="6">Yoro</option>
+				<option value="7">Valle</option>
+				<option value="8">Atlántida</option>
+				<option value="9">Lempira</option>
+				<option value="10">La paz</option>
+				<option value="11">El Paraíso</option>
+				<option value="12">Intibuca</option>
+				<option value="13">Gracias A Dios</option>
+				<option value="14">Islas de la Bahia</option>
+                <option value="15">Copán</option>
+                <option value="16">Colón</option>
+                <option value="17">Ocotepeque</option>
+                <option value="18">Santa Barbara</option>
 			</select>
+			<div id="departamento" style="color: red;"></div>
 			</div>
 		</div>		
-		<div class="control-group">
+		<div class="control-group ">
 			<label class="control-label" for="txtInformacion">Información Adicional</label>
 			<div class="controls">
 			  <input type="text" id="txtInformacion" name="txtInformacion"/>
@@ -251,14 +273,16 @@
 		<div class="control-group">
 			<label class="control-label" for="txtTelefono">Teléfono<sup>*</sup></label>
 			<div class="controls">
-			  <input type="number" name="txtTelefono" id="txtTelefono" required/><span><span>Sin guiones, solo número. Obligatorio.</span>
+			  <input type="number" name="txtTelefono" id="txtTelefono" /><span><span>Sin guiones, solo número. Obligatorio.</span>
+			  <div id="telefono" style="color: red;"></div>
 			</div>
 		</div>
 		
 		<div class="control-group">
 			<label class="control-label" for="txtTelefono2">Teléfono secundario </label>
 			<div class="controls">
-			  <input type="number" name="txtTelefono2" id="txtTelefono2" /><span>Sin guiones, solo número. Opcional.</span>
+			  <input type="number" name="txtTelefono2" id="txtTelefono2" /><span >Sin guiones, solo número. Opcional.</span>
+			  <div id="telefono2" style="color: red;"></div>
 			</div>
 		</div>
 		
@@ -266,8 +290,10 @@
 	
 	<div class="control-group">
 			<div class="controls">
-				<input class="btn btn-large btn-success" type="submit" value="Registrar" />
+				<button class="btn btn-large btn-success" id="prueba-registro" type="button" >Registrar </button>
+				<div id ="capcha" style="color: red;"></div>
 			</div>
+
 		</div>		
 	</form>
 </div>
@@ -303,17 +329,9 @@
 	<script src="js/bootshop.js"></script>
     <script src="js/jquery.lightbox-0.5.js"></script>
     <script src="js/controlador.js"></script>
-    <script>
-    	function validar(){
-		if(document.getElementById('txtTelefono').value.length < 8) {
-			alert('El campo debe tener al menos 8 carácteres.');
-			}else{
-			document.getElementById('formulario').submit();
-		}
-	}
-    </script>
-   
-</script>
+    
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
 
 
 	

@@ -1,11 +1,15 @@
 <?php 
 
-$usuario = "root";
-//$password = "password";
-$password = "conejomemo1";
 $servidor = "localhost";
-$basededatos = "ecommerce";
+$usuario = "root";
+$password = "";
 
-$mysqli = new mysqli($servidor, $usuario, $password, $basededatos);
+$db = "ecommerce";
+$mysqli = new mysqli($servidor, $usuario, $password, $db);
 mysqli_set_charset($mysqli, 'utf8');
+
+
+
+
  ?>
+

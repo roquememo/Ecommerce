@@ -4,7 +4,7 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 	
 	$user=inputSeguro($mysqli,$_GET['correo']);
 	$pass=inputSeguro($mysqli,$_GET['password']);
-	$consulta="SELECT * FROM usuario WHERE correo='".$user."' AND password= '".$pass."'";
+	$consulta="SELECT * FROM usuario WHERE correo='".$user."' AND password ='".$pass."'";
 	$stmt = $mysqli->query($consulta);
 
 	if($row=mysqli_fetch_array($stmt)){
@@ -15,18 +15,17 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 		$_SESSION['correo']=$row['correo'];
 		$_SESSION['cumple']=$row['fecha_nac'];
 		$_SESSION['direccion']=$row['id_direccion'];
-		if (isset($_GET['param'])) {
-			header('location:../index.html');
-		}
+
+		echo "1";
 	}
 	else{
-		echo "Datos incorrectos";
+		echo "2";
 	}
 	return true;
 	$mysqli->close();
 
 }else{
-	echo "Error desconocido 02";
+	echo "no existe sesion";
 }
 
 

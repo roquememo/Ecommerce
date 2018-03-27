@@ -1,10 +1,11 @@
 <?php 
 	include 'conexion.php';
-	$dia = $_GET['cbxDia'];
-	$mes = $_GET['cbxMes'];
-	$ano = $_GET['cbxAno'];
+
+	$dia = $_GET['dia'];
+	$mes = $_GET['mes'];
+	$ano = $_GET['anio'];
 	$fecha_nac=$ano."-".$mes."-".$dia;
-	$indiceDepartamento = $_GET['cbxDepartamento'];
+	$indiceDepartamento = $_GET['departamento'];
 	$departamento="";
 	if($indiceDepartamento == 1){
 	    $departamento = "Francisco Morazán";
@@ -21,35 +22,85 @@
 	if($indiceDepartamento == 5){
 	    $departamento = "Olancho";
 	}
-	$nombre = $_GET['txtNombre'];
-	$apellido = $_GET['txtApellido'];
-	$correo = $_GET['txtEmail'];
-	$password = $_GET['txtContrasena'];
-	$nombre_direccion = $_GET['txtDireccion'];
-	$direccion2 = $_GET['txtDireccion2'];
-	$ciudad = $_GET['txtCiudad'];
-	$telefono1 = $_GET['txtTelefono'];
-	$telefono2 = $_GET['txtTelefono2'];
-	$observaciones = $_GET['txtInformacion'];
-	$tamañoTelefono = strlen(($telefono1)); 
-	if ($tamañoTelefono != 8) {
-		echo '<script language="javascript">';
-		echo 'alert("El telefono debe tener 8 caracteres")';
-		echo '</script>';
-		header('location:../registro.html');
-
+	if($indiceDepartamento == 6){
+	    $departamento = "Yoro";
 	}
-	else{
-		$sql = "INSERT INTO direccion (nombre_direccion, direccion_2, ciudad, departamento, telefono1, telefono2, observaciones) VALUES ('$nombre_direccion', '$direccion2', '$ciudad', '$departamento', $telefono1, $telefono2,'$observaciones')";
-		mysqli_query($mysqli, $sql);
-		$respuesta = mysqli_query($mysqli, "SELECT id_direccion FROM direccion order by id_direccion desc limit 1");
-		$fila = mysqli_fetch_array($respuesta, MYSQL_NUM); 
-	    $id_direccion=$fila[0];
+	if($indiceDepartamento == 7){
+	    $departamento = "Valle";
+	}
+	if($indiceDepartamento == 8){
+	    $departamento = "Atlántida";
+	}
+	if($indiceDepartamento == 9){
+	    $departamento = "Lempira";
+	}
+    if($indiceDepartamento == 10){
+	    $departamento = "La paz";
+	}
+    if($indiceDepartamento == 11){
+	    $departamento = "El Paraíso";
+	}
+   if($indiceDepartamento == 12){
+	    $departamento = "Intibucá";
+	}
+   if($indiceDepartamento == 13){
+	    $departamento = "Gracias a Dios";
+	}
+    if($indiceDepartamento == 14){
+	    $departamento = "Islas de la Bahía";
+	}
+	if($indiceDepartamento == 15){
+	    $departamento = "Copán";
+	}
+    
+    if($indiceDepartamento == 16){
+	    $departamento = "Cólon";
+	}
+	if($indiceDepartamento == 17){
+	    $departamento = "Ocotepeque";
+	}
+	if($indiceDepartamento == 18){
+	    $departamento = "Santa Barbara";
+	}
+	$nombre = $_GET['usuario'];
+	$apellido = $_GET['apellido'];
+	$correo = $_GET['email'];
+	$password = $_GET['contrasena'];
+	$nombre_direccion = $_GET['direccion_1'];
+	$direccion2 = $_GET['direccion_2'];
+	$ciudad = $_GET['ciudad'];
+	$telefono1 = $_GET['telefono_1'];
+	$telefono2 = $_GET['telefono_2'];
+	$observaciones = $_GET['observaciones'];
+	$coordenada="";
+
+
+    $sql1="SELECT correo FROM usuario WHERE correo='$correo'";
+    $result = $mysqli->query($sql1);
+
+	$prueba= $result->num_rows;
+
+	if($prueba>0){
+
+		echo "1";
+	}
+	else
+	{
+	
+		$sql = "INSERT INTO direccion (nombre_direccion, direccion_2, ciudad,coordenada ,departamento, telefono1, telefono2, observaciones) VALUES
+		 ('$nombre_direccion', '$direccion2', '$ciudad', '$coordenada','$departamento', '$telefono1', '$telefono2','$observaciones')";
+		
+		$insert=$mysqli->query($sql);
+		$last_id = $mysqli->insert_id;
+		$id_direccion= $last_id;
+		
+	    
 		$sql2 = "INSERT INTO usuario (nombre, apellido, correo, password, fecha_nac, id_direccion) 
 		 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', $id_direccion)";
-		mysqli_query($mysqli, $sql2);
+		$insert=$mysqli->query($sql2);
 		mysqli_close($mysqli);
-		header('location:login.php?correo='.$correo.'&password='.$password.'&param=1');
 
-	}
+		echo "2";
+		}
+
 ?>
