@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Estado Ticket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Liberías, fuentes e íconos --> 
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
+    <link href="css/base.css" rel="stylesheet" media="screen"/>
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
+	<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+	<link href="js/google-code-prettify/prettify.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="imagenes/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="imagenes/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="imagenes/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="imagenes/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="imagenes/ico/apple-touch-icon-57-precomposed.png">
+	<style type="text/css" id="enject"></style>
+  </head>
+
+
+
+
+<body>
+<div id="header">
+
+<div class="container">
+    <div id="WelcomeLine" class="row">
+      <div class="span6">¡Bienvenido!<strong id="bienvenido"></strong></div>
+      <div class="span6">
+      <div class="pull-right">
+        <a id="a-cesta" href=""><span id="btn-cesta" class="btn btn-mini btn-primary"></span> </a>
+      </div>
+      </div>
+    </div>
+    <div id="logoArea" class="navbar">
+    <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+      <div class="navbar-inner">
+        <a class="brand" href="index.html"><img src="imagenes/LOGO1.png" width="100px" height="120px"/></a>
+        <div class="form-inline navbar-search">
+        <!-- controlador carga en un select las categorias -->
+        <select id="select-categorias" class="srchTxt"><option value="0" >Todo</option></select>
+          <button type="button" id="submitButton" class="btn btn-primary">Ir</button>
+        </div>
+        <ul id="topMenu" class="nav pull-right">
+       <li id="menu1"></li>
+       <li id="menu2"></li>
+       <li id="menu3"></li>
+       <li id="btn-principal" class="">
+      <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+
+          <!-- Modal de registro/iniciar sesión -->
+          <div class="modal-header">
+          <button type="button"
+          class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>Ingresar</h3>
+          </div>
+          <div class="modal-body">
+             <div class="control-group">            
+            <input type="email" id="inputemail" placeholder="Correo">
+             </div>
+            <div class="control-group">
+            <input type="password" id="inputpassword" placeholder="Contraseña">
+            </div>
+            <label id="error" style="color:#EF340C;"></label>
+          <input type="button" id="registro" value="Iniciar sesión" class="btn btn-success">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
+          ¿Aún no tienes cuenta? &nbsp; 
+          <a href="registro.html"><input type="button" id="iii" value="Regístrate" class="btn btn-success"></a>
+          </div>
+      </div>
+      </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+</div>
+
+
+          
+          <div id="mainBody">
+             <div class="container">
+                         <h3>Seguimineto De Ticket</h3>
+          <div class="well">
+              <form name="form" id="form" class="form-horizontal" method="" action="">
+                   <div class="control-group">
+                      <label class="control-label" for="txtTicket">Ticket de seguimineto</label>
+						<div class="controls">
+			  				<input type="text" id="txtTicket" name="txtTicket" readonly required>
+				 		</div>
+                   </div>
+                   <div class="control-group">
+                      <label class="control-label" for="txtEstado">Estado Ticket</label>
+						<div class="controls">
+			  				<input type="text" id="txtEstado" name="txtEstado" placeholder="Ejemplo:resuelto o en proceso" readonly required>
+				 		</div>
+                   </div>
+                   
+                   <div class="control-group">
+                      <label class="control-label" for="txtCreado">Creado el</label>
+						<div class="controls">
+			  				<input type="text" id="txtCreado" name="txtCreado" placeholder="Ejemplo:fecha en que se creo el ticket" readonly required>
+				 		</div>
+                   </div>
+                   
+                   <div class="control-group">
+                      <label class="control-label" for="txtActualizar">Actualizado el</label>
+						<div class="controls">
+			  				<input type="text" id="txtActualizar" name="txtActualizar" placeholder="Ejemplo:fecha en que se solicita el estado del ticket" readonly required>
+				 		</div>
+                   </div>
+                   
+                   <div class="control-group">
+                      <label class="control-label" for="txtPrioridad">Prioridad</label>
+						<div class="controls">
+			  				<input type="text" id="txtPrioridad" name="txtPrioridad" placeholder="Ejemplo: baja media o alta" readonly required>
+				 		</div>
+                   </div>
+              </form>
+              
+          </div>
+          
+          <div class="well">
+               <form name="formulario" id="formulario" class="form-horizontal" method="" action="">
+                   <div class="control-group">
+                       <label class="control-label" for="txtFecha">Fecha</label>
+                       <div class="controls">
+                           <input type="text" id="txtFecha" name="txtFecha" placeholder="ejemplo: fecha de creacion del ticket" readonly required >
+                       </div>
+                   </div>
+                   
+                   <div class="control-group">
+					<label class="control-label" for="txtNombre">Nombre</label>
+						<div class="controls">
+			  				<input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre del cliente" readonly required>
+						</div>
+		 		</div>
+                
+                <div class="control-group">
+					<label class="control-label" for="txtMsj">Mensaje</label>
+						<div class="controls">
+                            <textarea id="txtMsj" name="txtMsj" placeholder="Ejemplo: Hola gracias por escribirnos tu peticion ya fue solucionada" readonly required ></textarea>
+						</div>
+		 		</div>
+               </form>
+          </div>
+          
+          <div class="container">
+              <div class="container-fluid">
+                       <a class="btn" href="Ticket.html">Atras</a>
+              </div>
+              
+          </div>
+             </div>
+          </div>
+         
+
+
+
+
+
+
+    <!-- Pie -->
+	<div  id="footerSection">
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<h5>INFORMACIÓN</h5>
+				<a href="contacto.html">CONTÁCTANOS</a>  
+				<a href="registro.html">REGISTRARSE</a>  
+				<a href="tac.html">TÉRMINOS Y CONDICIONES</a> 
+				<a href="faq.html">FAQ</a>
+                <a href="PreguntasFrecuentes.html">PREGUNTAS FRECUENTES</a>
+			 </div>
+			<div id="socialMedia" class="span3 pull-right">
+				<h5>REDES SOCIALES </h5>
+				<a href="#"><img width="60" height="60" src="imagenes/facebook.png" title="facebook" alt="facebook"/></a>
+				<a href="#"><img width="60" height="60" src="imagenes/twitter.png" title="twitter" alt="twitter"/></a>
+				<a href="#"><img width="60" height="60" src="imagenes/youtube.png" title="youtube" alt="youtube"/></a>
+			 </div> 
+		 </div>
+	</div>
+	</div>
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/google-code-prettify/prettify.js"></script>
+	<script src="js/bootshop.js"></script>
+    <script src="js/jquery.lightbox-0.5.js"></script>
+    <script src="js/controlador.js"></script>
+
+</body>
+
+
+
+
+</html>
+

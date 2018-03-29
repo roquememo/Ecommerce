@@ -5,7 +5,7 @@ $(document).ready(function(){
  		url:"php/consultas.php?consulta=5",
  		method:"GET",
  		date:"",
- 		datatype:"html",
+ 		datatype:"JSON",
  		success:function(respuesta){
  			var obj=$.parseJSON(respuesta);
 	 		var count = Object.keys(obj).length;

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	$.ajax({
  		url:"php/consultas.php?consulta=5&carrito=1",
  		method:"GET",
@@ -22,7 +23,7 @@ $(document).ready(function(){
  		url:"php/consultas.php?consulta=1",
  		method:"GET",
  		date:"",
- 		datatype:"json",
+ 		datatype:"JSON",
  		success:function(respuesta){
 	 			var obj=$.parseJSON(respuesta);
 	 			var count = Object.keys(obj).length;
@@ -42,7 +43,7 @@ $(document).ready(function(){
 		url:"php/consultas.php?consulta=2",
 		method:"GET",
 		date:"",
-		datatype:"json",
+		datatype:"JSON",
 		success:function(respuesta){
 			var hasta=respuesta.length;
 			var obj=$.parseJSON(respuesta);
@@ -104,18 +105,23 @@ $(document).ready(function(){
 				$("#bienvenido").html(obj.nombre);
 				$("#btn-principal").prepend('<a href="php/destruir.php" role="button" style="padding-right:0">'+
 					'<span class="btn btn-large btn-success">Salir</span></a>');
+				$("#menu1").html('<a href="perfil.html">Perfil</a>');
+				$("#menu2").html('<a href="historial.html">Historial</a>');
+				$("#menu3").html('<a href="Ticket.html">Ticket</a>');
 
 			}else{
 				$("#bienvenido").html("Usuario");
 				$("#btn-principal").prepend('<a href="#login" role="button" data-toggle="modal" style="padding-right:0">'+
 					'<span class="btn btn-large btn-success">Entrar</span></a>');
+				$("#menu1").html('<a href="faq.html">FAQ</a>');
+				$("#menu2").html('<a href="contacto.html">Contáctanos</a>');
+				$("#menu3").html('');
 			}
 		},
 		error:function(){
 
 		}
 	});
-
 });
 
 $("#registro").click(function(){
@@ -186,194 +192,180 @@ $("#prueba-registro").click(function(){
                 +"&ciudad=" + ciudad_usuario + "&telefono_1=" + telefono1 + "&telefono_2=" + telefono2 
                 + "&observaciones=" + observaciones;
      
-   if((validar()==true)) {
-    $.ajax({
-    	url: "php/registro.php",
-        method: "GET",
-        data: valores,
-        success: function(respuesta){
-              
-               if(respuesta==1){
-                 
-				$('#capchas').html("correo ya existe");
-				$('#txtEmail').focus();
-               }
-				else if (respuesta==2) {
-				
-					alert("se ha registrado correctamente");
-					var url = window.location;
-			      	$(location).attr('href',url);
-			      	
-				}
+  if((validar()==true)) {
+	    $.ajax({
+	    	url: "php/registro.php",
+	        method: "GET",
+	        data: valores,
+	        success: function(respuesta){
+	              
+	               if(respuesta==1){
+	                 
+					$('#capchas').html("correo ya existe");
+					$('#txtEmail').focus();
+	               }
+					else if (respuesta==2) {
+					
+						alert("se ha registrado correctamente");
+						var url = window.location;
+				      	$(location).attr('href',url);
+				      	
+					}
 
-        },
-        error:function(){
-        	alert("error");
-        }
-	});
-
-}
-else
-{
-
-}
-
-	
-
+	        },
+	        error:function(){
+	        	alert("error");
+	        }
+		});
+	}
 });
 
 
 function validar(){
-   var validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
-   var numeros = /^[0-9]+$/;
+		   var validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+		   var numeros = /^[0-9]+$/;
 
-/*************************nombre****************************/
+		/*************************nombre****************************/
 
-   if($("#txtNombre").val() == ""){
-   
-   	  $('#nombre').html('campo nombre esta vacio' +" "+ '<i class="fas fa-times"></i>' );
+		   if($("#txtNombre").val() == ""){
+		   
+		   	  	$('#nombre').html('campo nombre esta vacio' +" "+ '<i class="fas fa-times"></i>' );
+		   		$("#txtNombre").focus();  
+		   	     	  
+		      return false;
+		    }
+		  else
+		     {
+		  	  $("#nombre").html(" ");
+		  	  $('#txtNombre').removeClass("invalid");
+		  	}
 
+		   /****************************************Apellido*************************************/
+		if($("#txtApellido").val() == ""){
+		   	  $('#apellido').html('campo apellido esta vacio' + " "+'<i class="fas fa-times"></i>');
+		   	  $("#txtApellido").focus();  
+		      return false;
+		    }
+		  else
+		      {
+		  	   $("#apellido").html(" ");
+		  	  }
+		  
 
-   	$("#txtNombre").focus();  
-   	     	  
-      return false;
-    }
-  else
-     {
-  	  $("#nombre").html(" ");
-  	  $('#txtNombre').removeClass("invalid");
-  	}
+		  /************************************EMAIL*********************************************/
 
-   /****************************************Apellido*************************************/
-if($("#txtApellido").val() == ""){
-   	  $('#apellido').html('campo apellido esta vacio' + " "+'<i class="fas fa-times"></i>');
-   	  $("#txtApellido").focus();  
-      return false;
-    }
-  else
-      {
-  	   $("#apellido").html(" ");
-  	  }
-  
-
-  /************************************EMAIL*********************************************/
-
-   if($("#txtEmail").val() == "" ){
-   	  $('#capchas').html('campo correo esta vacio' +" "+ '<i class="fas fa-times"></i>');
-   	  $("#txtEmail").focus();  
-      return false;
-    }
-  else
-      {
-  	   $("#capchas").html(" ");
-  	  }
+		   if($("#txtEmail").val() == "" ){
+		   	  $('#capchas').html('campo correo esta vacio' +" "+ '<i class="fas fa-times"></i>');
+		   	  $("#txtEmail").focus();  
+		      return false;
+		    }
+		  else
+		      {
+		  	   $("#capchas").html(" ");
+		  	  }
 
 
-  if( !validacion_email.test( $("#txtEmail").val() ) ) {
-		 $('#capchas').html('introduzca una direccion valida' +" "+ '<i class="fas fa-times"></i>');
-   	     $("#txtEmail").focus();  
-		 return false;
-	} else 
-        	{
-		 $("#capchas").html(" ");
-         	}
-	  
-/***********************************EMAIL***************************************************/
-   if($("#txtContrasena").val() == ""){
-   	  $('#contrasena').html('campo contraseña esta vacio' +" "+ '<i class="fas fa-times"></i>');
-   	  $("#txtContrasena").focus();  
-       return false;
-    }
-  else
-    {
-  	 $("#contrasena").html(" ");
-  	}
-	
+		  if( !validacion_email.test( $("#txtEmail").val() ) ) {
+				 $('#capchas').html('introduzca una direccion valida' +" "+ '<i class="fas fa-times"></i>');
+		   	     $("#txtEmail").focus();  
+				 return false;
+			} else 
+		        	{
+				 $("#capchas").html(" ");
+		         	}
+			  
+		/***********************************EMAIL***************************************************/
+		   if($("#txtContrasena").val() == ""){
+		   	  $('#contrasena').html('campo contraseña esta vacio' +" "+ '<i class="fas fa-times"></i>');
+		   	  $("#txtContrasena").focus();  
+		       return false;
+		    }
+		  else{
+		  	 $("#contrasena").html(" ");
+		  	}
+			
 
-  if( ($('#cbxDiaa').val() ==00) || ($('#cbxAnoo').val()==0000 ) || ($("#cbxMess").val()==00)) {
-         $('#fecha').html('introduzca una fecha valida' +" "+ '<i class="fas fa-times"></i>');
-         $("#cbxDiaa").focus();  
-         return false;
-   	    
-    } else {
-        $("#fecha").html(" ");
-    }
+		  if( ($('#cbxDiaa').val() ==00) || ($('#cbxAnoo').val()==0000 ) || ($("#cbxMess").val()==00)) {
+		         $('#fecha').html('introduzca una fecha valida' +" "+ '<i class="fas fa-times"></i>');
+		         $("#cbxDiaa").focus();  
+		         return false;
+		   	    
+		    } else {
+		        $("#fecha").html(" ");
+		    }
 
 
-/***********************************contraseña***************************************************/
-   if($("#txtDireccion").val() == ""){
-   	 $('#direccion').html('campo direccion esta vacio' +" "+ '<i class="fas fa-times"></i>');
-   	 $("#txtDireccion").focus();  
-       
-        return false;
-    }
-  else
-    {
-  	 $("#direccion").html(" ");
-  	}
+		/***********************************contraseña***************************************************/
+		   if($("#txtDireccion").val() == ""){
+		   	 $('#direccion').html('campo direccion esta vacio' +" "+ '<i class="fas fa-times"></i>');
+		   	 $("#txtDireccion").focus();  
+		       
+		        return false;
+		    }
+		  else
+		    {
+		  	 $("#direccion").html(" ");
+		  	}
 
 
 
-/***********************************ciudad***************************************************/
-     if($("#txtCiudad").val() == ""){
-   	    $('#ciudad').html('campo ciudad esta vacio' +" "+ '<i class="fas fa-times"></i>' );
-   	    $("#txtCiudad").focus();  
-       
-        return false;
-    }
-  else
-    {
-  	 $("#ciudad").html(" ");
-  	}
+		/***********************************ciudad***************************************************/
+		     if($("#txtCiudad").val() == ""){
+		   	    $('#ciudad').html('campo ciudad esta vacio' +" "+ '<i class="fas fa-times"></i>' );
+		   	    $("#txtCiudad").focus();  
+		       
+		        return false;
+		    }
+		  else
+		    {
+		  	 $("#ciudad").html(" ");
+		  	}
 
 
-/***********************************departamento***************************************************/
-  
- if($("#cbxDepartamento").val() == ""){
-   	 $('#departamento').html('campo departamento esta vacio' +" "+ '<i class="fas fa-times"></i>' );
-   	 $("#cbxDepartamento").focus();  
-       
-        return false;
-    }
-  else
-    {
-  	 $("#departamento").html(" ");
-  	}
+		/***********************************departamento***************************************************/
+		  
+		 if($("#cbxDepartamento").val() == ""){
+		   	 $('#departamento').html('campo departamento esta vacio' +" "+ '<i class="fas fa-times"></i>' );
+		   	 $("#cbxDepartamento").focus();  
+		       
+		        return false;
+		    }
+		  else
+		    {
+		  	 $("#departamento").html(" ");
+		  	}
 
 
-/***********************************telefono***************************************************/
-  if($("#txtTelefono").val() ==  ""){
-   	 $('#telefono').html('telefono esta vacio o tiene letras' +" "+ '<i class="fas fa-times"></i>' );
+		/***********************************telefono***************************************************/
+		  if($("#txtTelefono").val() ==  ""){
+		   	 $('#telefono').html('telefono esta vacio o tiene letras' +" "+ '<i class="fas fa-times"></i>' );
 
-   	 $("txtTelefono").focus();  
-       
-        return false;
-    }
-           else  if($("#txtTelefono").val().length<8 ){
-               	 $('#telefono').html('debe tener 8 numeros' +" " +'<i class="fas fa-exclamation"></i>');
-   	             $("txtTelefono").focus();  
-       
-                 return false;
-                  }
-                 
-  else
-    {
-  	 $("#telefono").html(" ");
-  	}
+		   	 $("txtTelefono").focus();  
+		       
+		        return false;
+		    }
+		           else  if($("#txtTelefono").val().length<8 ){
+		               	 $('#telefono').html('debe tener 8 numeros' +" " +'<i class="fas fa-exclamation"></i>');
+		   	             $("txtTelefono").focus();  
+		       
+		                 return false;
+		                  }
+		                 
+		  else
+		    {
+		  	 $("#telefono").html(" ");
+		  	}
 
-/***********************************telefono2***************************************************/
-  if(($("#txtTelefono2").val().length<8 ) && ($("#txtTelefono2").val().length>=1)){
-      $('#telefono2').html('debe tener 8 numeros' +" " +'<i class="fas fa-exclamation"></i>' );
-   	  $("txtTelefono2").focus();  
-       return false;
-    }
- else
-    {
-  	 $("#telefono2").html(" ");
-  	}
-
-
-
+		/***********************************telefono2***************************************************/
+		  if(($("#txtTelefono2").val().length<8 ) && ($("#txtTelefono2").val().length>=1)){
+		      $('#telefono2').html('debe tener 8 numeros' +" " +'<i class="fas fa-exclamation"></i>' );
+		   	  $("txtTelefono2").focus();  
+		       return false;
+		    }
+		 else
+		    {
+		  	 $("#telefono2").html(" ");
+		  	}
     return true;
 }
 

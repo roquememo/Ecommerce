@@ -20,58 +20,62 @@
   </head>
 <body>
 <div id="header">
+
 <div class="container">
-<div id="welcomeLine" class="row">
-	<div class="span6">¡Bienvenido!<strong id="bienvenido"></strong></div>
-	<div class="span6">
-	<div class="pull-right">
-		<a href="cesta.html"><span id="btn-cesta" class="btn btn-mini btn-primary"></span> </a> 
-	</div>
-	</div>
-</div>
-<div id="logoArea" class="navbar">
-<a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-</a>
-  <div class="navbar-inner">
-    <a class="brand" href="index.html"><img src="imagenes/LOGO1.png" width="100px" height="120px"/></a>
-		<div class="form-inline navbar-search">
-		<!-- controlador carga en un select las categorias -->
-		<select id="select-categorias" class="srchTxt"><option value="0" >Todo</option></select>
-		  <button type="button" id="submitButton" class="btn btn-primary">Ir</button>
-    </div>
-    <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="faq.html">FAQ</a></li>
-	 <li class=""><a href="contacto.html">Contáctanos</a></li>
-	 <li id="btn-principal" class="">
-	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
-		  <!-- Modal de registro/iniciar sesión -->
-		  <div class="modal-header">
-			<button type="button" 
-			class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3>Ingresar</h3>
+		<div id="WelcomeLine" class="row">
+			<div class="span6">¡Bienvenido!<strong id="bienvenido"></strong></div>
+			<div class="span6">
+			<div class="pull-right">
+				<a id="a-cesta" href=""><span id="btn-cesta" class="btn btn-mini btn-primary"></span> </a>
+			</div>
+			</div>
+		</div>
+		<div id="logoArea" class="navbar">
+		<a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</a>
+		  <div class="navbar-inner">
+		    <a class="brand" href="index.html"><img src="imagenes/LOGO1.png" width="100px" height="120px"/></a>
+				<div class="form-inline navbar-search">
+				<!-- controlador carga en un select las categorias -->
+				<select id="select-categorias" class="srchTxt"><option value="0" >Todo</option></select>
+				  <button type="button" id="submitButton" class="btn btn-primary">Ir</button>
+		    </div>
+		    <ul id="topMenu" class="nav pull-right">
+			 <li id="menu1"></li>
+			 <li id="menu2"></li>
+			 <li id="menu3"></li>
+			 <li id="btn-principal" class="">
+			<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+
+				  <!-- Modal de registro/iniciar sesión -->
+				 	<div class="modal-header">
+					<button type="button"
+					class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3>Ingresar</h3>
+				 	</div>
+				 	<div class="modal-body">
+						 <div class="control-group">						
+						<input type="email" id="inputemail" placeholder="Correo">
+						 </div>
+					 	<div class="control-group">
+						<input type="password" id="inputpassword" placeholder="Contraseña">
+					 	</div>
+					 	<label id="error" style="color:#EF340C;"></label>
+					<input type="button" id="registro" value="Iniciar sesión" class="btn btn-success">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
+					¿Aún no tienes cuenta? &nbsp;	
+					<a href="registro.html"><input type="button" id="iii" value="Regístrate" class="btn btn-success"></a>
+				  </div>
+			</div>
+			</li>
+		    </ul>
 		  </div>
-		  <div class="modal-body">
-			  <div class="control-group">								
-				<input type="email" id="inputemail" placeholder="Correo">
-			  </div>
-			  <div class="control-group">
-				<input type="password" id="inputpassword" placeholder="Contraseña">
-			  </div>
-			  <label id="error" style="color:#EF340C;"></label>
-			<input type="button" id="iii" value="Iniciar sesión" class="btn btn-success">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
-			¿Aún no tienes cuenta? &nbsp;	
-			<a href="registro.html"><input type="button" id="iii" value="Regístrate" class="btn btn-success"></a>
-		  </div>
-	</div>
-	</li>
-    </ul>
-  </div>
-</div>
-</div>
+		</div>
+		</div>
+
 </div>
 <div id="mainBody">
 	<div class="container">
