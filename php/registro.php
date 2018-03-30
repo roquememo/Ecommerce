@@ -72,7 +72,7 @@
 	$telefono1 = $_GET['telefono_1'];
 	$telefono2 = $_GET['telefono_2'];
 	$observaciones = $_GET['observaciones'];
-	$coordenada="";
+        $coordenates = $_GET['coords'];
 
 
     $sql1="SELECT correo FROM usuario WHERE correo='$correo'";
@@ -88,7 +88,7 @@
 	{
 	
 		$sql = "INSERT INTO direccion (nombre_direccion, direccion_2, ciudad,coordenada ,departamento, telefono1, telefono2, observaciones) VALUES
-		 ('$nombre_direccion', '$direccion2', '$ciudad', '$coordenada','$departamento', '$telefono1', '$telefono2','$observaciones')";
+		 ('$nombre_direccion', '$direccion2', '$ciudad', '$coordenates','$departamento', '$telefono1', '$telefono2','$observaciones')";
 		
 		$insert=$mysqli->query($sql);
 		$last_id = $mysqli->insert_id;
