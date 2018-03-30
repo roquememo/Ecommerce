@@ -18,8 +18,40 @@
     <link rel="apple-touch-icon-precomposed" href="imagenes/ico/apple-touch-icon-57-precomposed.png">
 	<style type="text/css" id="enject"></style>
 	<link href="css/prueba.css" rel="stylesheet" type="text/css" />
+	  
+	  
+	  <script>
+	  var MyCoord = "Waiting for Coordenates!";  
+	  function get_coordenates() {
+	    navigator.geolocation.getCurrentPosition(
+	      function (position){
+	        coords =  {
+	          lng: position.coords.longitude,
+	          lat: position.coords.latitude
+	        };            
+	      });
+	        
+	    MyCoord = "Your ubication is Lat: " + String(coords.lat) + "  Lng: " + String(coords.lng);
+	    put_coord(MyCoord);    
+	  };
+
+	  function put_coord(MyCoord){
+	    document.getElementById("coords").value = MyCoord;
+	  };
+	  
+	  var updating_coordenates = setTimeout(get_coordenates, 2000);              
+	</script>
+
+	<script async defer
+	  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf2WzSuH2OpF7nmitTc0rTa7KNwY30KCE&callback=initMap"></script>
+  
+	  
+	  
+	  
+	  
+	  
   </head>
-<body>
+<body onload="get_coordenates()">
 <div id="header">
 
 <div class="container">
@@ -290,6 +322,18 @@
 			</div>
 		</div>
 		
+			<div style="display: none;" class="control-group">
+			<label class="control-label" for="coords">Ubication: </label>
+			<div class="controls">
+			  <input type="text" id="coords" name="coords">
+			</div>
+		</div>
+			
+			
+			
+			
+			
+			
 	<p><sup>*</sup>Campo Requerido	</p>
 	
 	<div class="control-group">
