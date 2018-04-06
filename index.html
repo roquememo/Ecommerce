@@ -20,44 +20,8 @@
 	<style type="text/css" id="enject"></style>
 	  
 	  
-	  
-	  <script>
-	  var MyCoord = "Waiting for Coordenates!";  
-	  function get_coordenates() {
-	    navigator.geolocation.getCurrentPosition(
-	      function (position){
-	        coords =  {
-	          lng: position.coords.longitude,
-	          lat: position.coords.latitude
-	        };            
-	      });
-	        
-	    MyCoord = "Your ubication is Lat: " + String(coords.lat) + "  Lng: " + String(coords.lng);
-	    put_coord(MyCoord);    
-	  };
-
-	  function put_coord(MyCoord){
-	    document.getElementById("coordds").value = MyCoord;
-	  };
-	  
-	  var updating_coordenates = setTimeout(get_coordenates, 2000);              
-	</script>
-
-	<script async defer
-	  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBf2WzSuH2OpF7nmitTc0rTa7KNwY30KCE&callback=initMap"></script>
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
   </head>
-<body onload="get_coordenates()">
+<body >
 <!-- Botonera de navegación -->
 <div id="header">
 

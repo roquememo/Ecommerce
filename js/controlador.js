@@ -1,29 +1,5 @@
-<<<<<<< HEAD
-$(document).ready(function(id){
-	
-	$.ajax({
- 		url:"php/consultas.php?consulta=5&carrito=1",
- 		method:"GET",
- 		date:"",
- 		datatype:"html",
- 		success:function(respuesta){
- 			var url = window.location;
- 			if(respuesta==0){
- 				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> Sin Artículos en cesta');
- 				$("#a-cesta").attr('href','cesta.html?ref='+url);
- 			}else{
-	 			$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> ['+respuesta+'] Artículos en tu cesta');
-	 			$("#a-cesta").attr('href','cesta.html');
- 			}
- 		},
-		error:function(){
-			alert("error 1");
-		}
-	});
-=======
 $(document).ready(function(){
 	articulosCesta();
->>>>>>> f8858a14661ed695d0379a50be9de113031648d1
 	$.ajax({
  		url:"php/consultas.php?consulta=1",
  		method:"GET",
@@ -200,16 +176,6 @@ $("#registro").click(function(){
 			method:"GET",
 			data:parametros,
 			success:function(respuesta){
-<<<<<<< HEAD
-                
-			    if (respuesta==1) {
-				    var url = window.location;
-			        $(location).attr('href',url);}
-			    else if(respuesta==2) {
-			           $('#error').html("correo o password invalidos");
-                       $('#inputemail').focus();				
-			     }
-=======
 				if (respuesta==1) {
 					var url = window.location;
 			      	$(location).attr('href',url);
@@ -218,7 +184,6 @@ $("#registro").click(function(){
                      $('#error').html("correo o password invalidos");
                      $('#inputemail').focus();				
 			}
->>>>>>> f8858a14661ed695d0379a50be9de113031648d1
 			},
 			error:function(){
 				alert("Error desconocido");
