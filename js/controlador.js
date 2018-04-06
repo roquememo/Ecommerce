@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(id){
 	
 	$.ajax({
  		url:"php/consultas.php?consulta=5&carrito=1",
@@ -94,6 +94,10 @@ $(document).ready(function(){
 		}
 	});
 
+
+
+
+
 	$.ajax({
 		url:"php/sesion.php",
 		method:"POST",
@@ -105,10 +109,10 @@ $(document).ready(function(){
 				$("#bienvenido").html(obj.nombre);
 				$("#btn-principal").prepend('<a href="php/destruir.php" role="button" style="padding-right:0">'+
 					'<span class="btn btn-large btn-success">Salir</span></a>');
-				$("#menu1").html('<a href="perfil.html">Perfil</a>');
+                $("#menu1").html('<a href="perfil.html">Perfil</a>');
 				$("#menu2").html('<a href="historial.html">Historial</a>');
 				$("#menu3").html('<a href="Ticket.html">Ticket</a>');
-
+                
 			}else{
 				$("#bienvenido").html("Usuario");
 				$("#btn-principal").prepend('<a href="#login" role="button" data-toggle="modal" style="padding-right:0">'+
@@ -122,6 +126,39 @@ $(document).ready(function(){
 
 		}
 	});
+
+
+  $.ajax({
+		url:"php/modificar.php",
+		method:"GET",
+		datatype:"json",
+		
+		success:function(respuesta){
+				var obj = $.parseJSON(respuesta);
+				
+				$("#txtNombre").val(obj.nombre);
+				$("#txtApellido").val(obj.apellido);
+				$("#txtContrasena").val(obj.password);
+                $("#txtEmail").val(obj.correo);
+                $("#txtDireccion").val(obj.nombre_direccion);
+                $("#txtCiudad").val(obj.ciudad);
+                $("#txtTelefono").val(obj.telefono1);
+                $("#txtTelefono2").val(obj.telefono2);
+                $("#txtInformacion").val(obj.observaciones);
+                $("#txtDireccion2").val(obj.direccion_2);
+
+			
+		},
+		error:function(){
+
+		}
+	});
+
+
+
+
+
+
 });
 
 $("#registro").click(function(){
@@ -138,21 +175,14 @@ $("#registro").click(function(){
 			method:"GET",
 			data:parametros,
 			success:function(respuesta){
-
-			
-				if (respuesta==1) {
-					
-					var url = window.location;
-			      	$(location).attr('href',url);
-			      	
-					
-					
-				 }
-			       else if(respuesta==2) {
-
-                     $('#error').html("correo o password invalidos");
-                     $('#inputemail').focus();				
-			}
+                
+			    if (respuesta==1) {
+				    var url = window.location;
+			        $(location).attr('href',url);}
+			    else if(respuesta==2) {
+			           $('#error').html("correo o password invalidos");
+                       $('#inputemail').focus();				
+			     }
 			},
 			error:function(){
 				alert("Error desconocido");
@@ -165,6 +195,48 @@ $("#registro").click(function(){
 	
 });
 
+$("#guardar").click(function(){
+
+  
+   var nombre_usuario = $("#txtNombre").val();
+   var apellido_usuario=  $("#txtApellido").val();
+   var email_usuario = $("#txtEmail").val();   
+   var contrasena = $("#txtContrasena").val();
+ 
+   var nombre_direccion =$("#txtDireccion").val(); 
+  
+   var direccion2 = $("#txtDireccion2").val();
+   var ciudad_usuario = $("#txtCiudad").val();
+   var telefono1 = $("#txtTelefono").val();
+   var telefono2 = $("#txtTelefono2").val();
+   var observaciones = $("#txtInformacion").val();
+   
+
+   var valores= "usuario="+ nombre_usuario+"&apellido="+ apellido_usuario +"&email="+email_usuario 
+   			+ "&contrasena="+contrasena   
+               + "&direccion_1=" + nombre_direccion+  "&direccion_2=" + direccion2
+               +"&ciudad=" + ciudad_usuario + "&telefono_1=" + telefono1 + "&telefono_2=" + telefono2 
+                + "&observaciones=" + observaciones ;
+     
+	    $.ajax({
+	    	url: "php/actualizar.php",
+	        method: "GET",
+	        data: valores,
+	        
+	        success: function(respuesta){
+	            
+	              alert(respuesta);
+					     
+					       
+				      	    
+
+	        },
+	        error:function(){
+	        	alert("error");
+	        }
+		});
+	
+});
 
 
 
@@ -185,12 +257,13 @@ $("#prueba-registro").click(function(){
    var telefono1 = $("#txtTelefono").val();
    var telefono2 = $("#txtTelefono2").val();
    var observaciones = $("#txtInformacion").val();
+   var coordenadas =$("#coords").val();
 
    var valores= "usuario="+ nombre_usuario+"&apellido="+ apellido_usuario +"&email="+email_usuario
    				+ "&dia=" +fecha_dia + "&contrasena="+contrasena   + "&anio=" + fecha_anio + "&mes=" + fecha_mes
                 + "&direccion_1=" + nombre_direccion+ "&departamento=" + dpt + "&direccion_2=" + direccion2
                 +"&ciudad=" + ciudad_usuario + "&telefono_1=" + telefono1 + "&telefono_2=" + telefono2 
-                + "&observaciones=" + observaciones;
+                + "&observaciones=" + observaciones + "&coordenada=" + coordenadas;
      
   if((validar()==true)) {
 	    $.ajax({
@@ -198,19 +271,18 @@ $("#prueba-registro").click(function(){
 	        method: "GET",
 	        data: valores,
 	        success: function(respuesta){
-	              
+	            
 	               if(respuesta==1){
-	                 
-					$('#capchas').html("correo ya existe");
-					$('#txtEmail').focus();
+	                 $('#capchas').html("correo ya existe");
+					 $('#txtEmail').focus();
 	               }
-					else if (respuesta==2) {
-					
-						alert("se ha registrado correctamente");
-						var url = window.location;
-				      	$(location).attr('href',url);
-				      	
-					}
+				   else if (respuesta==2) {
+				   	$('#alert').addClass('alert alert-success').html('SE HA REGISTRADO CORRECTAMENTE').show(3000).delay(3000).hide(300);
+					    //   $('#alert').html('SE HA REGISTRADO CORRECTAMENTE').addClass("alert alert-success ").fadeIn("slow");
+					       window.location="index.html";
+				      			
+				      	    }
+
 
 	        },
 	        error:function(){
@@ -229,7 +301,7 @@ function validar(){
 
 		   if($("#txtNombre").val() == ""){
 		   
-		   	  	$('#nombre').html('campo nombre esta vacio' +" "+ '<i class="fas fa-times"></i>' );
+		   	  	$('#nombre').html('campo nombre esta vacio' +" "+ '<i class="fas fa-times"></i>' ).addClass("has-warning ");
 		   		$("#txtNombre").focus();  
 		   	     	  
 		      return false;
@@ -368,6 +440,25 @@ function validar(){
 		  	}
     return true;
 }
+
+function habilitar(){
+
+$("#txtNombre").removeAttr('disabled');
+$("#txtApellido").removeAttr('disabled');
+$("#txtEmail").removeAttr('disabled');	
+$("#txtContrasena").removeAttr('disabled');	
+$("#txtCiudad").removeAttr('disabled');
+$("#cbxDepartamento").removeAttr('disabled');
+$("#txtDireccion2").removeAttr('disabled');
+$("#txtDireccion").removeAttr('disabled');
+$("#txtInformacion").removeAttr('disabled');
+$("#txtTelefono").removeAttr('disabled');
+$("#txtTelefono2").removeAttr('disabled');
+
+$("#guardar").removeAttr("disabled");
+}
+
+
 
 $("#submitButton").click(function(){
 	var url= 'productos.html?cate='+$("#select-categorias").val();

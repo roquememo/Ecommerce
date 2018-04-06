@@ -9,6 +9,9 @@ if(isset($_SESSION['id'])){
 	$datos['correo']=$_SESSION['correo'];
 	$datos['cumple']=$_SESSION['cumple'];
 	$datos['direccion']=$_SESSION['direccion'];
+
+
+	
 	$valor= json_encode($datos);
 	echo $valor;
 }else{

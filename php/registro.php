@@ -65,17 +65,17 @@
 	$nombre = $_GET['usuario'];
 	$apellido = $_GET['apellido'];
 	$correo = $_GET['email'];
-	$password = $_GET['contrasena'];
+	$password= $_GET['contrasena'];
 	$nombre_direccion = $_GET['direccion_1'];
 	$direccion2 = $_GET['direccion_2'];
 	$ciudad = $_GET['ciudad'];
 	$telefono1 = $_GET['telefono_1'];
 	$telefono2 = $_GET['telefono_2'];
 	$observaciones = $_GET['observaciones'];
-        $coordenates = $_GET['coords'];
+    $coordenates = $_GET['coordenada'];
 
 
-    $sql1="SELECT correo FROM usuario WHERE correo='$correo'";
+    $sql1="SELECT correo FROM usuario WHERE correo='$correo' ";
     $result = $mysqli->query($sql1);
 
 	$prueba= $result->num_rows;
@@ -96,7 +96,7 @@
 		
 	    
 		$sql2 = "INSERT INTO usuario (nombre, apellido, correo, password, fecha_nac, id_direccion) 
-		 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', $id_direccion)";
+		 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', '$id_direccion')";
 		$insert=$mysqli->query($sql2);
 		mysqli_close($mysqli);
 

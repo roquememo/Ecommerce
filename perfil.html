@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>Perfil</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Liberías, fuentes e íconos --> 
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
+    <link href="css/base.css" rel="stylesheet" media="screen"/>
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="js/google-code-prettify/prettify.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="imagenes/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="imagenes/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="imagenes/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="imagenes/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="imagenes/ico/apple-touch-icon-57-precomposed.png">
+  <style type="text/css" id="enject"></style>
+  <link href="css/prueba.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+  
+
+  form {
+          
+          
+            width: 600px;
+            box-shadow: 0px 0px 25px  1px rgba(0,0,0,0.4);
+          margin: auto;
+            padding: 20px;
+  
+          margin-top: 10px;
+            
+            
+     
+         }
+}
+</style>
+</head>
+<div id="header">
+
+<div class="container">
+    <div id="WelcomeLine" class="row">
+      <div class="span6">¡Bienvenido!<strong id="bienvenido"></strong></div>
+      <div class="span6">
+      <div class="pull-right">
+        <a id="a-cesta" href=""><span id="btn-cesta" class="btn btn-mini btn-primary"></span> </a>
+      </div>
+      </div>
+    </div>
+    <div id="logoArea" class="navbar">
+    <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+      <div class="navbar-inner">
+        <a class="brand" href="index.html"><img src="imagenes/LOGO1.png" width="100px" height="120px"/></a>
+        <div class="form-inline navbar-search">
+        <!-- controlador carga en un select las categorias -->
+        <select id="select-categorias" class="srchTxt"><option value="0" >Todo</option></select>
+          <button type="button" id="submitButton" class="btn btn-primary">Ir</button>
+        </div>
+
+        <ul id="topMenu" class="nav pull-right">
+       <li id="menu1"></li>
+       <li id="menu2"></li>
+       <li id="menu3"></li>
+      
+       
+       
+
+       <li id="btn-principal" class="">
+              
+      <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+
+           
+
+          <!-- Modal de registro/iniciar sesión -->
+          <div class="modal-header">
+          <button type="button"
+          class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>Ingresar</h3>
+          </div>
+          <div class="modal-body">
+             <div class="control-group">            
+            <input type="email" id="inputemail" placeholder="Correo">
+             </div>
+            <div class="control-group">
+            <input type="password" id="inputpassword" placeholder="Contraseña">
+            </div>
+            <div style="display: none;" class="control-group">
+        <input type="text" id="coords" name="Coordenates">
+        </div>
+            <label id="error" style="color:#EF340C;"></label>
+          <input type="button" id="registro" value="Iniciar sesión" class="btn btn-success">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
+          ¿Aún no tienes cuenta? &nbsp; 
+          <a href="registro.html"><input type="button"  value="Regístrate" class="btn btn-success"></a>
+          </div>
+      </div>
+      </li>
+          <!-- falta boton de registro -->
+  
+  
+        </ul>
+      </div>
+    </div>
+    </div>
+
+</div>
+<body>
+
+
+
+
+
+
+  <div class="well">
+  <form name="formulario" id="formulario" class="form-horizontal">
+    <h4>Información Personal</h4>
+    <div class="control-group">
+      <label class="control-label" for="txtNombre">Nombre<sup>*</sup></label>
+      <div class="controls">
+        <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" disabled >
+        
+      </div>
+     </div>
+     <div class="control-group">
+      <label class="control-label" for="txtApellido">Apellidos <sup>*</sup></label>
+      <div class="controls">
+        <input type="text" id="txtApellido" name="txtApellido" placeholder="Apellidos" disabled >
+       
+      </div>
+     </div>
+    <div class="control-group">
+    <label class="control-label" for="txtEmail">Correo <sup>*</sup></label>
+    <div class="controls">
+      <input type="email" id="txtEmail" name="txtEmail" placeholder="Correo" disabled >
+      <div id ="capchas" style="color: red;"></div>
+    </div>
+    </div>    
+  <div class="control-group">
+    <label class="control-label" for="txtContrasena">Contraseña <sup>*</sup></label>
+    <div class="controls">
+      <input type="password" id="txtContrasena" name="txtContrasena" placeholder="Contraseña" disabled >
+      <div id ="contrasena" style="color: red;"></div>
+    </div>
+    </div>    
+    <div class="control-group">
+    <label class="control-label">Fecha de Nacimiento <sup>*</sup></label>
+    <div class="controls">
+      <select class="span1" id="cbxDiaa" name="cbxDiaa"  disabled>
+        <option value="">DIA</option>
+          <option value="01">1&nbsp;&nbsp;</option>
+          <option value="02">2&nbsp;&nbsp;</option>
+          <option value="03">3&nbsp;&nbsp;</option>
+          <option value="04">4&nbsp;&nbsp;</option>
+          <option value="05">5&nbsp;&nbsp;</option>
+          <option value="06">6&nbsp;&nbsp;</option>
+          <option value="07">7&nbsp;&nbsp;</option>
+          <option value="08">8&nbsp;&nbsp;</option>
+          <option value="09">9&nbsp;&nbsp;</option>
+          <option value="10">10&nbsp;&nbsp;</option>
+          <option value="11">11&nbsp;&nbsp;</option>
+          <option value="12">12&nbsp;&nbsp;</option>
+          <option value="13">13&nbsp;&nbsp;</option>
+          <option value="14">14&nbsp;&nbsp;</option>
+          <option value="15">15&nbsp;&nbsp;</option>
+          <option value="16">16&nbsp;&nbsp;</option>
+          <option value="17">17&nbsp;&nbsp;</option>
+          <option value="18">18&nbsp;&nbsp;</option>
+          <option value="19">19&nbsp;&nbsp;</option>
+          <option value="20">20&nbsp;&nbsp;</option>
+          <option value="21">21&nbsp;&nbsp;</option>
+          <option value="22">22&nbsp;&nbsp;</option>
+          <option value="23">23&nbsp;&nbsp;</option>
+          <option value="24">24&nbsp;&nbsp;</option>
+          <option value="25">25&nbsp;&nbsp;</option>
+          <option value="26">26&nbsp;&nbsp;</option>
+          <option value="27">27&nbsp;&nbsp;</option>
+          <option value="28">28&nbsp;&nbsp;</option>
+          <option value="29">29&nbsp;&nbsp;</option>
+          <option value="30">30&nbsp;&nbsp;</option>
+          <option value="31">31&nbsp;&nbsp;</option>
+      </select>
+      <select class="span1" id="cbxMess" name="cbxMess" disabled>
+        <option value="">MES</option>
+          <option value="01">1&nbsp;&nbsp;</option>
+          <option value="02">2&nbsp;&nbsp;</option>
+          <option value="03">3&nbsp;&nbsp;</option>
+          <option value="04">4&nbsp;&nbsp;</option>
+          <option value="05">5&nbsp;&nbsp;</option>
+          <option value="06">6&nbsp;&nbsp;</option>
+          <option value="07">7&nbsp;&nbsp;</option>
+          <option value="08">8&nbsp;&nbsp;</option>
+          <option value="09">9&nbsp;&nbsp;</option>
+          <option value="10">10&nbsp;&nbsp;</option>
+          <option value="11">11&nbsp;&nbsp;</option>
+          <option value="12">12&nbsp;&nbsp;</option>
+      </select>
+      <select class="span1" id="cbxAnoo" name="cbxAnoo"  disabled>
+        <option value="">AÑO</option>
+          <option value="1990">1990&nbsp;&nbsp;</option>
+          <option value="1991">1991&nbsp;&nbsp;</option>
+          <option value="1992">1992&nbsp;&nbsp;</option>
+          <option value="1993">1993&nbsp;&nbsp;</option>
+          <option value="1994">1994&nbsp;&nbsp;</option>
+          <option value="1995">1995&nbsp;&nbsp;</option>
+          <option value="1996">1996&nbsp;&nbsp;</option>
+          <option value="1997">1997&nbsp;&nbsp;</option>
+          <option value="1998">1998&nbsp;&nbsp;</option>
+          <option value="1999">1999&nbsp;&nbsp;</option>
+      </select>
+      <div id ="fecha" style="color: red;"></div>
+    </div>
+    </div>
+      <br>
+    <h4>Dirección</h4>    
+    
+    <div class="control-group">
+      <label class="control-label" for="txtDireccion">Dirección<sup>*</sup></label>
+      <div class="controls">
+        <input type="text" id="txtDireccion" name="txtDireccion" placeholder="Dirección" disabled /><span>Calle, avenida, zona</span>
+        <div id ="direccion" style="color: red;"></div>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="txtDireccion2">Dirección (Línea 2)<sup></sup></label>
+      <div class="controls">
+        <input type="text" id="txtDireccion2" name="txtDireccion2"  disabled /> <span>Observaciones.</span>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtCiudad">Ciudad<sup>*</sup></label>
+      <div class="controls">
+        <input type="text" id="txtCiudad" name="txtCiudad" placeholder="Ciudad" disabled /> 
+        <div id="ciudad" style="color: red;"></div>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="cbxDepartamento">Departamento<sup>*</sup></label>
+      <div class="controls">
+        <select id="cbxDepartamento" name="cbxDepartamento" disabled>
+          <option value="">-</option>
+        <option value="4">Choluteca</option>
+        <option value="3">Comayagua</option>
+        <option value="2">Cortés</option>
+        <option value="1">Francisco Morazán</option>
+        <option value="5">Olancho</option>
+        <option value="6">Yoro</option>
+        <option value="7">Valle</option>
+        <option value="8">Atlántida</option>
+        <option value="9">Lempira</option>
+        <option value="10">La paz</option>
+        <option value="11">El Paraíso</option>
+        <option value="12">Intibuca</option>
+        <option value="13">Gracias A Dios</option>
+        <option value="14">Islas de la Bahia</option>
+                <option value="15">Copán</option>
+                <option value="16">Colón</option>
+                <option value="17">Ocotepeque</option>
+                <option value="18">Santa Barbara</option>
+      </select>
+      <div id="departamento" style="color: red;"></div>
+      </div>
+    </div>    
+    <div class="control-group ">
+      <label class="control-label" for="txtInformacion">Información Adicional</label>
+      <div class="controls">
+        <input type="text" id="txtInformacion" name="txtInformacion" disabled />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="txtTelefono">Teléfono<sup>*</sup></label>
+      <div class="controls">
+        <input type="number" name="txtTelefono" id="txtTelefono" disabled /><span><span>Sin guiones, solo número. Obligatorio.</span>
+        <div id="telefono" style="color: red;"></div>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="txtTelefono2">Teléfono secundario </label>
+      <div class="controls">
+        <input type="number" name="txtTelefono2" id="txtTelefono2" disabled /><span >Sin guiones, solo número. Opcional.</span>
+        <div id="telefono2" style="color: red;"></div>
+      </div>
+    </div>
+    
+      <div  class="control-group">
+      <label class="control-label" for="coords">Ubication: </label>
+      <div class="controls">
+        <input type="text" id="coords" name="coords" disabled>
+      </div>
+    </div>
+      
+      
+      
+      
+      
+      
+  
+  <div class="control-group">
+      <div class="controls">
+        <button class="btn btn-large btn-success" id="modificar" type="button" value="modificar"  onclick="habilitar()"   >Modificar </button>
+        <button class="btn btn-large btn-success" id="guardar" type="button" value="guardar" name="guardar" disabled="" >Guardar </button>
+      </div>
+
+    </div>    
+
+        
+        
+       
+  </form>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div  id="footerSection">
+  <div class="container">
+    <div class="row">
+      <div class="span3">
+        <h5>INFORMACIÓN</h5>
+        <a href="contacto.html">CONTÁCTANOS</a>  
+        <a href="registro.html">REGISTRARSE</a>  
+        <a href="tac.html">TÉRMINOS Y CONDICIONES</a> 
+        <a href="faq.html">FAQ</a>
+       </div>
+      <div id="socialMedia" class="span3 pull-right">
+        <h5>REDES SOCIALES </h5>
+        <a href="#"><img width="60" height="60" src="imagenes/facebook.png" title="facebook" alt="facebook"/></a>
+        <a href="#"><img width="60" height="60" src="imagenes/twitter.png" title="twitter" alt="twitter"/></a>
+        <a href="#"><img width="60" height="60" src="imagenes/youtube.png" title="youtube" alt="youtube"/></a>
+       </div> 
+     </div>
+  </div>
+  </div>
+
+  <!-- Librerías JavaScript -->
+  <script src="js/jquery.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="js/google-code-prettify/prettify.js"></script>
+  <script src="js/bootshop.js"></script>
+    <script src="js/jquery.lightbox-0.5.js"></script>
+    <script src="js/controlador.js"></script>
+
+</body>
+</html>
+
+

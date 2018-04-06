@@ -5,11 +5,11 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 	$user=inputSeguro($mysqli,$_GET['correo']);
 	$pass=inputSeguro($mysqli,$_GET['password']);
 	
-	$coordenates  = null;
-	$coordenates = $_GET['coordenates'];
-	$target = null;
-
-	$consulta="SELECT * FROM usuario WHERE correo='".$user."' AND password= '".$pass."'";
+	//$coordenates  = null;
+	//$coordenates = $_GET['coordenates'];
+	//$target = null;
+    $consulta = "SELECT *FROM usuario A INNER JOIN direccion B ON A.id_direccion =B.id_direccion WHERE A.correo='".$user."' AND A.password='".$pass."' ";
+	
 	$stmt = $mysqli->query($consulta);
 
 	if($row=mysqli_fetch_array($stmt)){
@@ -18,22 +18,24 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 		$_SESSION['nombre']=$row['nombre'];
 		$_SESSION['apellido']=$row['apellido'];
 		$_SESSION['correo']=$row['correo'];
-		$_SESSION['cumple']=$row['fecha_nac'];
+		$_SESSION['password']=$row['password'];
+        $_SESSION['cumple']=$row['fecha_nac'];
 		$_SESSION['direccion']=$row['id_direccion'];
-
+		$_SESSION['nombre_direccion']=$row['nombre_direccion'];
+		
+	    echo "1";	
 		// Begin to update coordenates for the user! (Update coordenates for each session!)------------
-		$target = $row['id_direccion'];
+		/*$target = $row['id_direccion'];
 		$sql = "UPDATE direccion SET coordenada = '$coordenates' 
 		        WHERE id_direccion = '$target'";
-		$other = $mysqli->query($sql);
+		$other = $mysqli->query($sql);*/
 		// End updating!----------------------------------------
-
-				
-		header('location:../index.html');
+		
+		
 
 	}
 	else{
-		echo "Datos incorrectos";
+		echo "2";
 	}
 	return true;
 	$mysqli->close();

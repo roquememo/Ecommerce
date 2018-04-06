@@ -36,7 +36,7 @@
 	  };
 
 	  function put_coord(MyCoord){
-	    document.getElementById("coords").value = MyCoord;
+	    document.getElementById("coordds").value = MyCoord;
 	  };
 	  
 	  var updating_coordenates = setTimeout(get_coordenates, 2000);              
@@ -82,12 +82,19 @@
 				<select id="select-categorias" class="srchTxt"><option value="0" >Todo</option></select>
 				  <button type="button" id="submitButton" class="btn btn-primary">Ir</button>
 		    </div>
+
 		    <ul id="topMenu" class="nav pull-right">
 			 <li id="menu1"></li>
 			 <li id="menu2"></li>
 			 <li id="menu3"></li>
+			
+              <!--boton -->
+
 			 <li id="btn-principal" class="">
+              
 			<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
+
+           
 
 				  <!-- Modal de registro/iniciar sesión -->
 				 	<div class="modal-header">
@@ -97,14 +104,12 @@
 				 	</div>
 				 	<div class="modal-body">
 						 <div class="control-group">						
-						<input type="email" id="inputemail" placeholder="Correo">
+						<input type="email" id="inputemail" placeholder="Correo"  value="">
 						 </div>
 					 	<div class="control-group">
-						<input type="password" id="inputpassword" placeholder="Contraseña">
+						<input type="password" id="inputpassword" placeholder="Contraseña" value="" >
 					 	</div>
-						<div style="display: none;" class="control-group">
-				<input type="text" id="coords" name="Coordenates">
-			  </div>
+						
 					 	<label id="error" style="color:#EF340C;"></label>
 					<input type="button" id="registro" value="Iniciar sesión" class="btn btn-success">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button><br><br><br>
@@ -113,12 +118,16 @@
 				  </div>
 			</div>
 			</li>
+					
+	
+	
 		    </ul>
 		  </div>
 		</div>
 		</div>
 
 </div>
+
 <!-- Carrousel de imágenes -->
 <div id="carouselBlk">
 	<div id="Carrousel" class="carousel slide">
@@ -266,6 +275,7 @@
 				<a href="registro.html">REGISTRARSE</a>  
 				<a href="tac.html">TÉRMINOS Y CONDICIONES</a> 
 				<a href="faq.html">FAQ</a>
+
 			 </div>
 			<div id="socialMedia" class="span3 pull-right">
 				<h5>REDES SOCIALES </h5>
