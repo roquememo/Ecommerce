@@ -1,24 +1,5 @@
 $(document).ready(function(){
-	
-	$.ajax({
- 		url:"php/consultas.php?consulta=5&carrito=1",
- 		method:"GET",
- 		date:"",
- 		datatype:"html",
- 		success:function(respuesta){
- 			var url = window.location;
- 			if(respuesta==0){
- 				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> Sin Artículos en cesta');
- 				$("#a-cesta").attr('href','cesta.html?ref='+url);
- 			}else{
-	 			$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> ['+respuesta+'] Artículos en tu cesta');
-	 			$("#a-cesta").attr('href','cesta.html');
- 			}
- 		},
-		error:function(){
-			alert("error 1");
-		}
-	});
+	articulosCesta();
 	$.ajax({
  		url:"php/consultas.php?consulta=1",
  		method:"GET",
@@ -73,14 +54,16 @@ $(document).ready(function(){
 				  		'</div>'+
 						'</li>');
 				}
+					var nombre="'"+obj[i]['nombre'].trim()+"'"
+					var id=obj[i]['id'];
 					$("#ul-productos").append('<li class="span3">'+
 				  		'<div class="thumbnail">'+
 						'<a  href="productodetalles.html?id='+obj[i]['id']+'"><img src="'+obj[i]['url']+'" alt=""/></a>'+
 						'<div class="caption">'+
 					  	'<h5>'+obj[i]['nombre']+'</h5>'+
 					  	'<h4 style="text-align:center"><a class="btn" href="productodetalles.html?id='+obj[i]['id']+'">'+
-					  	'<i class="icon-zoom-in"></i></a> <a class="btn" href="#">Agregar '+
-					  	'<i class="icon-shopping-cart"></i></a> '+
+					  	'<i class="icon-zoom-in"></i></a> <button class="btn" onClick="agregar('+id+','+nombre+')">Agregar '+
+					  	'<i class="icon-shopping-cart"></i></button> '+
 					  	'<a class="btn btn-primary" href="#">LPS '+obj[i]['precio']+'</a></h4>'+
 						'</div>'+
 				  		'</div>'+
@@ -124,32 +107,43 @@ $(document).ready(function(){
 	});
 });
 
+function articulosCesta(){
+	$.ajax({
+ 		url:"php/consultas.php?consulta=5&carrito=1",
+ 		method:"GET",
+ 		date:"",
+ 		datatype:"html",
+ 		success:function(respuesta){
+ 			var url = window.location;
+ 			if(respuesta==0){
+ 				$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> Sin Artículos en cesta');
+ 				$("#a-cesta").attr('href','cesta.html?ref='+url);
+ 			}else{
+	 			$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> ['+respuesta+'] Artículos en tu cesta');
+	 			$("#a-cesta").attr('href','cesta.html');
+ 			}
+ 		},
+		error:function(){
+			alert("error 1");
+		}
+	});
+}
+
 $("#registro").click(function(){
-
-
 	if( ($("#inputemail").val()!='') && ($("#inputpassword").val()!='') ){
-
 		var email_usuario = $("#inputemail").val();
 		var password_usuario =$("#inputpassword").val();
-
 		var parametros="correo="+ email_usuario + "&password=" + password_usuario;
 		$.ajax({
-			url:"php/login.php",
+			url:'php/login.php',
 			method:"GET",
 			data:parametros,
 			success:function(respuesta){
-
-			
 				if (respuesta==1) {
-					
 					var url = window.location;
 			      	$(location).attr('href',url);
-			      	
-					
-					
 				 }
 			       else if(respuesta==2) {
-
                      $('#error').html("correo o password invalidos");
                      $('#inputemail').focus();				
 			}
@@ -160,9 +154,8 @@ $("#registro").click(function(){
 		});
 		
 	}else{
-		$("#error").html("Campos vacios");
+		$("#error").html("Campos vacios 1");
 	}
-	
 });
 
 
@@ -373,3 +366,50 @@ $("#submitButton").click(function(){
 	var url= 'productos.html?cate='+$("#select-categorias").val();
 	$(location).attr('href',url);
 });
+
+function agregar(id,nombre){
+	var cantidad=0;
+	if($("#cantidadCarrito").length){
+		cantidad=$("#cantidadCarrito").val();
+	}
+	$.ajax({
+		url:"php/sesion.php",
+		method:"POST",
+		date:"",
+		datatype:"json",
+		success:function(respuesta){
+			if(!(respuesta=="error")){
+				guardarCarro(id,nombre,cantidad);
+			}else{
+				$.toast({
+				    heading: 'Inicia sesión',
+				    text: 'Para poder Agregar productos al carrito',
+				    icon: 'error'
+				});
+			}
+		}
+	});
+}
+function guardarCarro(id,nombre,cantidad){
+	$.ajax({
+			url:'php/agregarProducto.php',
+			method:'GET',
+			data: "id="+id+"&cantidad="+cantidad,
+			success:function(respuesta){
+				if(respuesta=='error'){
+					$.toast({
+				    heading: 'Error',
+				    text: 'Ocurrio un error al intentar agregar un producto',
+				    icon: 'error'
+				});
+				}else{
+					$.toast({
+				    heading: 'Producto Agregado al Carrito',
+				    text: nombre,
+				    icon: 'success'
+				});
+					articulosCesta();
+				}
+			}
+		});
+}

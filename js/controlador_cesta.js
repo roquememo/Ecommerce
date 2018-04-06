@@ -1,6 +1,8 @@
 $(document).ready(function(){
-	var ref= getUrlParameter('ref');
-	var pro= getUrlParameter('pro');
+	cargarCesta();
+});
+
+function cargarCesta(){
 	$.ajax({
  		url:"php/consultas.php?consulta=5",
  		method:"GET",
@@ -13,47 +15,74 @@ $(document).ready(function(){
  			if(!(respuesta=="0")){
  				$("#small").prepend(count);
  				for (var i = 0; i < count; i++) {
-	 				$("#tabla").prepend(' <tr>'+
+ 					var suma=(obj[i]['precio']*obj[i]['cantidad']);
+ 	 				$("#tabla").prepend(' <tr>'+
 	                  '<td colspan="2"> <img width="60" src="'+obj[i]['url']+'" alt=""/></td>'+
 	                  '<td colspan="2">'+obj[i]['nombre']+'</td>'+
 					  '<td colspan="2">'+
-					  '<div class="input-append"><input class="span1" style="max-width:34px" placeholder="1"'+ 
-					  'id="appendedInputButtons" size="16" type="text">'+
-					  '<button class="btn" type="button"><i class="icon-minus"></i></button>'+
-					  '<button class="btn" type="button"><i class="icon-plus"></i></button>'+
-					  '<button class="btn btn-danger" type="button">'+
+					  '<div class="input-append"><input  class="span1" style="max-width:34px" value="'+obj[i]['cantidad']+ 
+					  '" id="appendedInputButtons" size="16" type="text" disabled>'+
+					  '<button onclick="borrar('+obj[i]['id_producto']+')" class="btn btn-danger" type="button">'+
 					  '<i class="icon-remove icon-white"></i></button></div>'+
 					  '</td>'+
 	                  '<td colspan="2">'+obj[i]['precio']+'</td>'+
-	                  '<td colspan="2">'+obj[i]['precio']+'</td>'+
+	                  '<td colspan="2">'+suma+'</td>'+
 	                '</tr>');
-	                precio=precio+parseInt(obj[i]['precio']);
+	                precio=precio+parseInt(suma);
  				}
  				$("#precio").html(precio);
  				$("#total").html(precio);
  				
  			}else{
 	 			alert("Registrate para comprar");
-	 			$(location).attr('href',ref);
+	 			$(location).attr('href','registro.html');
  			}
  		},
 		error:function(){
 			alert("error");
 		}
 	});
-});
+}
 
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-};
+function borrar(id){
+	$.ajax({
+		url: 'php/borrarProducto.php',
+		method: 'GET',
+		data: 'id='+id,
+		success:function(respuesta){
+			$("#tabla").html('<table class="table table-bordered">'+
+             ' <thead>'+
+                '<tr>'+
+                  '<th colspan="2">Producto</th>'+
+                  '<th colspan="2">Nombre</th>'+
+                  '<th colspan="2">Cantidad</th>'+
+				  '<th colspan="2">Precio</th>'+
+                  '<th colspan="2">Total</th>'+
+				'</tr>'+
+              '</thead>'+
+              '<tbody id="tabla">'+
+                  '<td colspan="8" style="text-align:right">Total Precio:	</td>'+
+                  '<td id="precio" colspan="2"> </td>'+
+                '</tr>'+
+				 '<tr>'+
+                  '<td colspan="8" style="text-align:right">Total Descuento:	</td>'+
+                  '<td colspan="2"> 0</td>'+
+                '</tr>'+
+				 '<tr>'+
+                  '<td colspan="8" style="text-align:right"><strong>TOTAL</strong></td>'+
+                  '<td colspan="2" class="label label-important" style="display:block"> <strong id="total">  </strong></td>'+
+                '</tr>'+
+				'</tbody>'+
+            '</table>');
+			cargarCesta();
+			$.toast({
+				    heading: 'Eliminado',
+				    text: 'Se ha eliminado un producto del carrito',
+				    icon: 'success'
+				});
+		},
+		error:function(){
+			alert('error al borrar');
+		}
+	});
+}
