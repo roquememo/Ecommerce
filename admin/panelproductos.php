@@ -705,7 +705,7 @@ if(isset($_POST['delete_product_event']))
 									<center>
 										<div class="form-group">
 											<input type='hidden' name='delete_product_event'>
-											<button type="submit" class="btn btn-success">Eliminar</button>
+											<button type="submit" class="btn btn-danger">Eliminar</button>
 										</div>
 									</center>
 								</div>
