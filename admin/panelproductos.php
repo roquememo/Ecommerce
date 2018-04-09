@@ -6,6 +6,7 @@ require 'sql/Insertar_product_sb.php';
 require 'sql/Insertar_product_dp.php';
 require 'sql/Insertar_product_le.php';
 require 'sql/Insertar_product_z.php';
+require 'sql/remove_product.php';
 
 session_start();
 if($_SESSION['login'] == true){
@@ -147,6 +148,13 @@ if(isset($_POST['show_product']))
     $model = new ShowProduct;
     $model->categoria = htmlspecialchars($_POST['catg_producto']);
     $model->Show();
+}
+
+if(isset($_POST['delete_product_event']))
+{
+    $model = new remove_product;
+    $model->name = htmlspecialchars($_POST['remove_product_tipo']);   
+    $model->remove();
 }
 
 
@@ -659,6 +667,62 @@ if(isset($_POST['show_product']))
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+	
+	
+	<div id="delete_product" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Actualizar producto</h4>
+						</div>
+						<div class="modal-body">
+							<div class="panel-body">
+							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+
+								<div class="row">
+									<table class="mitabla">
+										<tr>
+											<td><label>Nombre de producto:</label></td>
+											<td>
+												<select name="remove_product_tipo">
+											    <?php
+											    $sql = "SELECT * FROM productos";
+											    $resultado = $conexion2->query($sql);
+											    
+											    while($fila = $resultado->fetch_array())
+											    { 
+											        echo "<option>".$fila['nombre']."</option>";
+											    }    
+											    ?>
+										    	</select>
+										  	</td>
+										</tr>
+									</table>
+								</div>
+								<div class="row col-sm-6 col-sm-offset-3">
+									<br><br>
+									<center>
+										<div class="form-group">
+											<input type='hidden' name='delete_product_event'>
+											<button type="submit" class="btn btn-success">Eliminar</button>
+										</div>
+									</center>
+								</div>
+							</form>
+							</div>
+						</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	
+	
+	
+	
+	
+	
+	
 
 
 
@@ -724,10 +788,10 @@ if(isset($_POST['show_product']))
 							  	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_product">
 							  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar
 							 	</button>
-							 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reset_password">
+							 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_product">
 							  		<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualizar
 							 	</button>
-							 	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reset_password">
+							 	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_product">
 							  		<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Eliminar
 							 	</button>
 							 	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#show_product">
