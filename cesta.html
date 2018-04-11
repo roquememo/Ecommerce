@@ -2,15 +2,15 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>Cesta de compras</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cesta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 
 <!-- Liberías, fuentes e íconos --> 
     <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
-    <link href="css/base.css" rel="stylesheet" media="screen"/>
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
 	<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 	<link href="js/google-code-prettify/prettify.css" rel="stylesheet"/>
+	<link href="css/base.css" rel="stylesheet" media="screen"/>
     <link rel="shortcut icon" href="imagenes/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="imagenes/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="imagenes/ico/apple-touch-icon-114-precomposed.png">
@@ -143,18 +143,19 @@
                 </tr>
 				 <tr>
                   <td colspan="8" style="text-align:right"><strong>TOTAL</strong></td>
-                  <td colspan="2" class="label label-important" style="display:block"> <strong id="total">  </strong></td>
+                  <td colspan="2" class="label label-important" style="display:none"> <strong id="total">  </strong></td>
                 </tr>
 				</tbody>
             </table>
 		
 			
-	<a href="productos.html?cate=0" class="btn btn-large"><i class="icon-arrow-left"></i> Continuar comprando </a>
+	<button style="display: none;" id="btnPagar" onclick="paypal()" class="btn btn-large"> Pagar </button>
+	<div id="error"></div>
 	
 </div>
 </div></div>
 </div>
-	<!-- Pie -->
+	<!-- Pie --> 	
 	<div  id="footerSection">
 	<div class="container">
 		<div class="row">
