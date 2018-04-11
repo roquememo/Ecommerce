@@ -846,6 +846,17 @@ if(isset($_POST['update_product_event']))
 					Productos
 				</a>
 			</li>
+			<li >
+				<a href="paneltickets.php">
+				<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+					Tickets
+				</a>
+			</li>
+			<li>
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#exit">
+			  		<span class="glyphicon glyphicon-logout" aria-hidden="true"></span> Cerrar Sesion
+			 	</button>
+			</li>
 		</ul>
 	      <ul class="nav navbar-nav navbar-right">
 
@@ -890,6 +901,8 @@ if(isset($_POST['update_product_event']))
 							  	<!-- <button type="button" class="btn btn-default">
 							    	<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Suspender
 							  	</button> -->
+
+
 							</div>
 					  	</div>
 					  	<br>			
@@ -908,6 +921,7 @@ if(isset($_POST['update_product_event']))
 
 
     <form class="form-inline" method='POST' action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+	  
 	    <label>Selecciona un producto y realiza una consulta: </label>
 	    <div class="input-control select">
 		    <label for="user_password">Nombre de producto:</label>
@@ -928,7 +942,9 @@ if(isset($_POST['update_product_event']))
 	    <br>
 	    <br>
 	    <!--<?php echo "<label>".$tmp."</label>" ?>-->
+
 	</form>
+
 
 
 
@@ -949,13 +965,17 @@ if(isset($_POST['update_product_event']))
 							<br>
 							<!-- tab 1-->
 							<div class="tab-pane active" id="1">
- 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_product_tmp">
-								  	 	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Actualizar
-								</button>
-								<br><br>
+ 								
 
 
 								<?php
+
+								if ($tmp == NULL){
+
+								}
+								else
+								{
+
 							    $sql34 = "SELECT * FROM productos WHERE nombre='$tmp'";
 							  
 							    $resultado34 = $conexion2->query($sql34);							    
@@ -989,10 +1009,17 @@ if(isset($_POST['update_product_event']))
 							        echo "<div class='form-group'>";
 							        	echo "<label class='col-md-3 control-label'>Modelo:</label>";
 							        	echo "<p class='col-md-9 control-label'>".$fila['modelo']."</p>";
-							        echo "</div>";		   
+							        echo "</div>";	  
+
+							    }
+
+							    echo" <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#update_product_tmp'>";
+								echo "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Actualizar</button><br><br>";
 
 
-							    }    
+
+								};
+    
 							    ?>
 
 						    <hr><br><br>
