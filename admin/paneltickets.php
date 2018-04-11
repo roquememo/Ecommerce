@@ -1,6 +1,7 @@
 <?php
 require 'sql/Insertar_admin.php';
 require 'sql/resetpass.php';
+require 'sql/update_ticket.php';
 
 session_start();
 if($_SESSION['login'] == true){
@@ -21,7 +22,7 @@ if(isset($_POST['cerrar_sesion']))
         }
 
 $conexion2 = new mysqli("localhost", "root", "", "ecommerce");
-
+$tmp = null;
 // Invocando proceso de insercion
 if(isset($_POST['save_user']))
 	{
@@ -36,20 +37,6 @@ if(isset($_POST['save_user']))
 		$Model->Insertar();
 	}
 
-if(isset($_POST['update_user']))
-	{
-		// Empaquetando valores de los campos a guardar
-		$Model = new Update_usuario;
-		$Model->identificacion = addslashes($_POST['identity']);
-		$Model->nombres = addslashes($_POST['name']);
-		$Model->apellidos = addslashes($_POST['lastname']);
-		$Model->nacimiento = addslashes($_POST['birtday']);
-		$Model->domicilio = addslashes($_POST['home']);
-		$Model->pais = addslashes($_POST['country']);
-		$Model->tmp = addslashes($_POST['idcode']);
-		$Model->Update();
-	}
-
 
 
 
@@ -60,6 +47,20 @@ if(isset($_POST['reset_password_user']))
     $model->password = htmlspecialchars($_POST['new_password']);
     $model->reset();
 
+}
+
+if(isset($_POST['consultar']))
+{
+	$tmp = $_POST['tipo_producto'];
+}
+
+if(isset($_POST['update_ticket_event']))
+{
+	// Empaquetando valores de los campos a guardar
+	$Model = new update_ticket;
+	$Model->gestion = addslashes($_POST['update_ticket_gestion']);
+	$Model->asunto = addslashes($_POST['idcode']);	
+	$Model->update();
 }
 
 
@@ -171,55 +172,69 @@ if(isset($_POST['reset_password_user']))
 
 
 
-	<div id="new_user" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title">Nuevo administrador</h4>
-						</div>
-						<div class="modal-body">
-							<div class="panel-body">
-								<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+	
 
-									<h3>Información personal</h3>
-									<div class="row">
-										<div class="form-group col-sm-6 grid-margin">
-											<input type="text" name="nombre" class="form-control" id="txtNombre" placeholder="Nombre" required>
-										</div>
-										<div class="form-group col-sm-6 grid-margin">
-											<input type="text" name="apellido" class="form-control" id="txtApellido" placeholder="Apellido" required>
-										</div>		
-									</div>
-									<br>
-									
-									<h3>Credenciales para acceso</h3>
-									<div class="row">
-										<div class="form-group col-sm-6 grid-margin">
-											<input type="email" name="correo" class="form-control" id="txtEmail" placeholder="Correo" required>
-										</div>
-										<div class="form-group col-sm-6 grid-margin">
-											<input type="password" name="contrasena" class="form-control" id="txtPassword" placeholder="Contraseña" required>
-										</div>
-									</div>
-									<br>											
 
-									<div class="row col-sm-6 col-sm-offset-3">
-										<br>
-										<center>
-										<div class="form-group">
-											<input type='hidden' name='save_user'>
-											<button type="submit" class="btn btn-success">Guardar</button>
-										</div>
-										</center>
-									</div>
-								</form>			
+
+
+	<div id="update_ticket" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Ticket pendiente</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel-body">
+							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+
+								<?php 
+								$sql4 = "SELECT * FROM tickets WHERE asunto='$tmp'";
+							    $resultado4 = $conexion2->query($sql4);
+							    while($fila4 = $resultado4->fetch_array())
+							    {
+							        
+							        
+							        echo "<div class='row'>";
+							        	echo "<h3 class='col-md-3 control-label'>Asunto:</h3>";							        	
+							        	echo "<input type='text' name='idcode' class='form-control' id='idcode' value='".$fila4['asunto']."' readonly>";
+							        echo "</div>";
+
+							        echo "<div class='row'>";
+							        	echo "<h3 class='col-md-3 control-label'>Descripcion:</h3>";
+							        	echo "<input type='text' name='ijnvfrtt' class='form-control' id='ijnvfrtt' value='".$fila4['descripcion']."' readonly>";
+							        echo "</div>";
+
+							         echo "<div class='row'>";
+							        	echo "<h3 class='col-md-3 control-label'>Fecha:</h3>";							        	
+							        	echo "<input type='text' name='ijnvfrre' class='form-control' id='ijnvfrre' value='".$fila4['fecha_apertura']."' readonly>";
+							        echo "</div><br>";
+
+							        echo "<div class='row'>";							        	
+							        	echo "<div class='form-group col-sm-6 grid-margin'>";						        		
+							        		echo "<textarea name='update_ticket_gestion' class='form-control' id='update_ticket_gestion' rows='10' cols='10' placeholder='Ingrese gestiones realizadas para brindar respuesta.'></textarea>";
+							        	echo "</div>";
+							        echo "</div>";
+
+							        //SSecho "<label name='idcode'>".$fila4['asunto']."</label>";
+							        $_POST['idcode'] = $tmp;
+
+					
+							    }
+								?>				
 									
-							</div>
+								<div class="row">
+									<input type='hidden' name='update_ticket_event'>
+									<button type="submit" class="btn btn-success">
+										<span class="glyphicon glyphicon-send" aria-hidden="true"></span> Enviar respuesta</button>
+								</div>									
+								
+							</form>											
 						</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+					</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
@@ -240,7 +255,7 @@ if(isset($_POST['reset_password_user']))
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
-			<li class="menu-activo">
+			<li>
 				<a href="panelusuarios.php">
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					Usuarios
@@ -252,7 +267,7 @@ if(isset($_POST['reset_password_user']))
 					Productos
 				</a>
 			</li>
-			<li >
+			<li class="menu-activo">
 				<a href="paneltickets.php">
 				<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 					Tickets
@@ -288,47 +303,34 @@ if(isset($_POST['reset_password_user']))
 			<div class="col-xs-12 col-lg-5 grid-margin">
 				<div class="panel panel-default panel-cuadrado">
 					<div class="panel-heading">
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>   Administradores
+						<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>   Tickets Pendientes
 					</div>
 					<!--Inicio de panel izquierso -->
 					<div class="panel-body">
-					  	<div id="operaciones-proyectos">
-					  		<div class="btn-group" role="group">
-							  	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_user">
-							  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar administrador
-							 	</button>
-							 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reset_password">
-							  		<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Cambiar contraseña
-							 	</button>
 
-							  	<!-- <button type="button" class="btn btn-default">
-							    	<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Suspender
-							  	</button> -->
-							</div>
-					  	</div>
 					  	<br>
-						    <h4>Listado de administradores actuales para la plataforma:</h4>
+						    <h4>Listado de tickets pendientes por responder:</h4>
 						<br><br>
 					    <div>
 					    
 					    	<table class="table table-striped table-hover"  id="tabla-usuarios">
 					    		<thead>
 						    		<tr>
-						    			<th>Nombre</th>
-						    			<th>Apellido</th>
-						    			<th>Correo</th>
+						    			<th>Asunto</th>
+						    			<th>Descripcion</th>
+						    			<th>Fecha de apertura</th>
 						    		</tr>
 						    		</thead>
 					    		<tbody>
 									<?php
-									$sql = "SELECT * FROM administrador";
+									$sql = "SELECT * FROM tickets WHERE estado='PENDIENTE'";
 								    $resultado = $conexion2->query($sql);
 								    while($fila = $resultado->fetch_array())
 								    {
 								        echo "<tr>";
-								        	echo "<td>".$fila['nombre']."</td>";
-											echo "<td>".$fila['apellido']."</td>";
-											echo "<td>".$fila['correo']."</td>";
+								        	echo "<td>".$fila['asunto']."</td>";
+											echo "<td>".$fila['descripcion']."</td>";
+											echo "<td>".$fila['fecha_apertura']."</td>";
 								        echo "<tr>";
 								    }
 
@@ -336,6 +338,99 @@ if(isset($_POST['reset_password_user']))
 
 					    		</tbody>
 					    	</table>
+					    	<br>
+					    	<form class="form-inline" method='POST' action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+							    <h3>Responder tickets</h3>
+							    <div class="input-control select">
+								    <label for="user_password">Asunto:</label>
+								    <select name="tipo_producto">
+									    <?php
+									    $sql = "SELECT * FROM tickets WHERE estado='PENDIENTE'";
+									    $resultado = $conexion2->query($sql);
+									    
+									    while($fila = $resultado->fetch_array())
+									    { 
+									        echo "<option>".$fila['asunto']."</option>";
+									    }    
+									    ?>
+								    </select>
+							    </div>
+							    <input type='hidden' name='consultar'>
+								<button type="submit" class="btn btn-primary">Ampliar informacion</button>
+							    <br>
+							    <br>
+							    <!--<?php echo "<label>".$tmp."</label>" ?>-->
+							</form>
+
+
+
+
+						<div class="col-xs-12 col-lg-7 grid-margin">
+							<div class="panel with-nav-tabs panel-default panel-cuadrado">
+							  <div class="panel-heading">
+							  	<!--<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Proyecto: Nombre de proyecto-->
+		  						<ul class="nav nav-tabs">  							
+									<li class="active"><a  href="#1" data-toggle="tab">Datos generales</a></li>							
+								</ul>
+							  </div>
+							  <div class="panel-body">
+								<div class="tab-content ">
+									<br>
+									<!-- tab 1-->
+									<div class="tab-pane active" id="1">
+
+										<?php
+
+										if ($tmp == NULL){
+
+										}
+										else{
+
+									    $sql34 = "SELECT * FROM tickets WHERE asunto='$tmp'";
+									  
+									    $resultado34 = $conexion2->query($sql34);							    
+									    while($fila = $resultado34->fetch_array())
+									    { 	
+									        echo "<div class='form-group'>";
+									        	echo "<label class='col-md-3 control-label'>Asunto:</label>";
+									        	echo "<p class='col-md-9 control-label'>".$fila['asunto']."</p>";
+									        echo "</div>";
+
+									        echo "<div class='form-group'>";
+									        	echo "<label class='col-md-3 control-label'>Estado:</label>";
+									        	echo "<p class='col-md-9 control-label'>".$fila['estado']."</p>";
+									        echo "</div>";
+
+									        echo "<div class='form-group'>";
+									        	echo "<label class='col-md-3 control-label'>Descripcion:</label>";
+									        	echo "<p class='col-md-9 control-label'>".$fila['descripcion']."</p>";
+									        echo "</div>";
+
+									        echo "<div class='form-group'>";
+									        	echo "<label class='col-md-3 control-label'>Fecha de apertura:</label>";
+									        	echo "<p class='col-md-9 control-label'>".$fila['fecha_apertura']."</p>";
+									        echo "</div>";	   
+
+
+									    } 
+
+									    
+		 								echo" <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#update_ticket'>";
+										  	 	echo "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Responder ticket</button><br><br>";
+
+
+										};
+
+
+									    ?>
+
+								    <hr><br><br>
+									</div>
+								</div>
+							  </div>
+							 </div>
+					</div>
+
 
 					    </div>
 					</div>
@@ -343,6 +438,10 @@ if(isset($_POST['reset_password_user']))
 			</div>
 		</div>
 	</div>
+
+
+
+
 </center>
 
 
