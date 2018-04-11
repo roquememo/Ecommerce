@@ -6,6 +6,8 @@ require 'sql/Insertar_product_sb.php';
 require 'sql/Insertar_product_dp.php';
 require 'sql/Insertar_product_le.php';
 require 'sql/Insertar_product_z.php';
+require 'sql/remove_product.php';
+require 'sql/update_product.php';
 
 session_start();
 if($_SESSION['login'] == true){
@@ -26,6 +28,7 @@ if(isset($_POST['cerrar_sesion']))
         }
 
 $conexion2 = new mysqli("localhost", "root", "", "ecommerce");
+$tmp = null;
 
 
 // Invocando proceso de insercion
@@ -43,9 +46,6 @@ if(isset($_POST['save_product']))
 		// Ejecutando insercion a la base de datos
 		$Model->Insertar();
 	}
-
-
-
 
 	if(isset($_POST['save_productT']))
 	{
@@ -150,9 +150,34 @@ if(isset($_POST['show_product']))
 }
 
 
+if(isset($_POST['delete_product_event']))
+{
+    $model = new remove_product;
+    $model->name = htmlspecialchars($_POST['remove_product_tipo']);   
+    $model->remove();
+}
+
+
+if(isset($_POST['consultar']))
+{
+	$tmp = $_POST['tipo_producto'];
+}
+
+
+if(isset($_POST['update_product_event']))
+{
+	// Empaquetando valores de los campos a guardar
+	$Model = new update_product;
+	$Model->nombre = addslashes($_POST['update_name_product']);
+	$Model->precio = addslashes($_POST['update_price_product']);
+	$Model->cantidad = addslashes($_POST['update_cant_product']);
+	$Model->descripcion = addslashes($_POST['update_desc_product']);	
+	$Model->peso = addslashes($_POST['update_peso_product']);
+	$Model->modelo = addslashes($_POST['update_model_product']);
+	$Model->update();
+}
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -172,8 +197,6 @@ if(isset($_POST['show_product']))
 
 </head>
 <body>
-
-
 
 
 	<div id="show_product" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
@@ -224,12 +247,6 @@ if(isset($_POST['show_product']))
 
 
 
-
-
-
-
-
-
 	<div id="exit" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -250,9 +267,6 @@ if(isset($_POST['show_product']))
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
-
-
 
 
 
@@ -661,6 +675,147 @@ if(isset($_POST['show_product']))
 </div><!-- /.modal -->
 
 
+<div id="delete_product" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Eliminar producto</h4>
+						</div>
+						<div class="modal-body">
+							<div class="panel-body">
+							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+
+								<div class="row">
+									<table class="mitabla">
+										<tr>
+											<td><label>Nombre de producto:</label></td>
+											<td>
+												<select name="remove_product_tipo">
+											    <?php
+											    $sql = "SELECT * FROM productos";
+											    $resultado = $conexion2->query($sql);
+											    
+											    while($fila = $resultado->fetch_array())
+											    { 
+											        echo "<option>".$fila['nombre']."</option>";
+											    }    
+											    ?>
+										    	</select>
+										  	</td>
+										</tr>
+									</table>
+								</div>
+								<div class="row col-sm-6 col-sm-offset-3">
+									<br><br>									
+										<div class="form-group">
+											<input type='hidden' name='delete_product_event'>
+											<button type="submit" class="btn btn-danger">Eliminar</button>
+										</div>									
+								</div>
+							</form>
+							</div>
+						</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<div id="update_product_tmp" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Actualizacion de producto</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel-body">
+							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+								<label>Nombre</label>
+
+								<?php 
+								$sql4 = "SELECT * FROM productos WHERE nombre='$tmp'";
+							    $resultado4 = $conexion2->query($sql4);
+							    while($fila4 = $resultado4->fetch_array())
+							    {
+							        
+							        echo "<div class='row'>";							        	
+							        	echo "<div class='form-group col-sm-6 grid-margin'>";							        		
+							        		echo "<input type='text' name='update_name_product' class='form-control' id='update_name_product' value='".$fila4['nombre']."'>";
+							        	echo "</div>";
+							        echo "</div>";
+
+							        echo "<div class='row'>";
+							        	echo "<div class='form-group col-sm-6 grid-margin'>";
+							        		echo "<label>Precio</label>";
+							        		echo "<input type='text' name='update_price_product' class='form-control' id='update_price_product' value='".$fila4['precio']."'>";
+							        	echo "</div>";							        
+							        echo "</div>";
+
+							        echo "<div class='row'>";
+							        	echo "<div class='form-group col-sm-6 grid-margin'>";
+							        		echo "<label>Cantidad</label>";							        		
+							        		echo "<input type='text' name='update_cant_product' class='form-control' id='update_cant_product' value='".$fila4['cantidad']."'>";
+							        	echo "</div>";
+							        echo "</div>";
+							        	
+							        echo "<div class='row'>";
+							        	echo "<div class='form-group col-sm-6 grid-margin'>";
+							        		echo "<label>Descripcion</label>";	        		
+							        		echo "<input type='text' name='update_desc_product' class='form-control' id='update_desc_product' value='".$fila4['descripcion']."'>";
+							        	echo "</div>";
+							        echo "</div>";
+
+
+							        echo "<div class='row'>";
+							        	echo "<div class='form-group col-sm-6 grid-margin'>";
+							        		echo "<label>Peso</label>";								        		
+							        		echo "<input type='text' name='update_peso_product' class='form-control' id='update_peso_product' value='".$fila4['peso']."'>";
+							        	echo "</div>";
+							        echo "</div>";
+
+							        echo "<div class='row'>";
+							        	echo "<div class='form-group col-sm-6 grid-margin'>";
+							        		echo "<label>Modelo</label>";								        		
+							        		echo "<input type='text' name='update_model_product' class='form-control' id='update_model_product' value='".$fila4['modelo']."'>";
+							        	echo "</div>";
+							        echo "</div>";
+
+
+							        //echo "<label name='idcode'>".$fila4['codUsuario']."</label>";
+							        $_POST['idcode'] = $tmp;
+
+					
+							    }
+								?>				
+
+								<div class="row col-sm-6 col-sm-offset-3">
+									<br>
+									<center>
+									<div class="form-group">
+										<input type='hidden' name='update_product_event'>
+										<button type="submit" class="btn btn-success">Actualizar</button>
+									</div>
+									</center>
+								</div>
+							</form>											
+						</div>
+					</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+	
+
+
+
 
 	<!--Barra de navegacion -->
 	<nav class="navbar  navbar-default">
@@ -723,11 +878,8 @@ if(isset($_POST['show_product']))
 					  		<div class="btn-group" role="group">
 							  	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_product">
 							  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar
-							 	</button>
-							 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reset_password">
-							  		<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualizar
-							 	</button>
-							 	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reset_password">
+							 	</button>							 	
+							 	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_product">
 							  		<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Eliminar
 							 	</button>
 							 	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#show_product">
@@ -740,9 +892,7 @@ if(isset($_POST['show_product']))
 							  	</button> -->
 							</div>
 					  	</div>
-					  	<br>
-						    
-					
+					  	<br>			
 					    
 					</div>
 				</div>
@@ -750,6 +900,115 @@ if(isset($_POST['show_product']))
 		</div>
 	</div>
 </center>
+
+
+
+
+
+
+
+    <form class="form-inline" method='POST' action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+	    <label>Selecciona un producto y realiza una consulta: </label>
+	    <div class="input-control select">
+		    <label for="user_password">Nombre de producto:</label>
+		    <select name="tipo_producto">
+			    <?php
+			    $sql = "SELECT * FROM productos";
+			    $resultado = $conexion2->query($sql);
+			    
+			    while($fila = $resultado->fetch_array())
+			    { 
+			        echo "<option>".$fila['nombre']."</option>";
+			    }    
+			    ?>
+		    </select>
+	    </div>
+	    <input type='hidden' name='consultar'>
+		<button type="submit" class="btn btn-primary">Consultar</button>
+	    <br>
+	    <br>
+	    <!--<?php echo "<label>".$tmp."</label>" ?>-->
+	</form>
+
+
+
+
+
+
+
+			<div class="col-xs-12 col-lg-7 grid-margin">
+					<div class="panel with-nav-tabs panel-default panel-cuadrado">
+					  <div class="panel-heading">
+					  	<!--<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Proyecto: Nombre de proyecto-->
+  						<ul class="nav nav-tabs">  							
+							<li class="active"><a  href="#1" data-toggle="tab">Datos generales</a></li>							
+						</ul>
+					  </div>
+					  <div class="panel-body">
+						<div class="tab-content ">
+							<br>
+							<!-- tab 1-->
+							<div class="tab-pane active" id="1">
+ 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_product_tmp">
+								  	 	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Actualizar
+								</button>
+								<br><br>
+
+
+								<?php
+							    $sql34 = "SELECT * FROM productos WHERE nombre='$tmp'";
+							  
+							    $resultado34 = $conexion2->query($sql34);							    
+							    while($fila = $resultado34->fetch_array())
+							    { 	
+							        echo "<div class='form-group'>";
+							        	echo "<label class='col-md-3 control-label'>Nombre:</label>";
+							        	echo "<p class='col-md-9 control-label'>".$fila['nombre']."</p>";
+							        echo "</div>";
+
+							        echo "<div class='form-group'>";
+							        	echo "<label class='col-md-3 control-label'>Precio:</label>";
+							        	echo "<p class='col-md-9 control-label'>".$fila['precio']."</p>";
+							        echo "</div>";
+
+							        echo "<div class='form-group'>";
+							        	echo "<label class='col-md-3 control-label'>Cantidad:</label>";
+							        	echo "<p class='col-md-9 control-label'>".$fila['cantidad']."</p>";
+							        echo "</div>";
+
+							        echo "<div class='form-group'>";
+							        	echo "<label class='col-md-3 control-label'>Descripcion:</label>";
+							        	echo "<p class='col-md-9 control-label'>".$fila['descripcion']."</p>";
+							        echo "</div>";		
+
+							        echo "<div class='form-group'>";
+							        	echo "<label class='col-md-3 control-label'>Peso:</label>";
+							        	echo "<p class='col-md-9 control-label'>".$fila['precio']."</p>";
+							        echo "</div>";
+
+							        echo "<div class='form-group'>";
+							        	echo "<label class='col-md-3 control-label'>Modelo:</label>";
+							        	echo "<p class='col-md-9 control-label'>".$fila['modelo']."</p>";
+							        echo "</div>";		   
+
+
+							    }    
+							    ?>
+
+						    <hr><br><br>
+							</div>
+						</div>
+					  </div>
+					 </div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
 
 
 	<script src="js/jquery.js"></script>
