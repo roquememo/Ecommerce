@@ -252,6 +252,17 @@ if(isset($_POST['reset_password_user']))
 					Productos
 				</a>
 			</li>
+			<li >
+				<a href="paneltickets.php">
+				<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+					Tickets
+				</a>
+			</li>
+			<li>
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#exit">
+			  		<span class="glyphicon glyphicon-logout" aria-hidden="true"></span> Cerrar Sesion
+			 	</button>
+			</li>
 		</ul>
 	      <ul class="nav navbar-nav navbar-right">
 
