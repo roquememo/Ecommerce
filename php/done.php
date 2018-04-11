@@ -1,5 +1,7 @@
 <?php
 	session_start();
+	date_default_timezone_set('Etc/UTC');
+	require '../PHPMailer/PHPMailerAutoload.php';
 	include 'conexion.php';
 	include "codigoqr.php";
 	if(isset($_GET['key'])){
@@ -50,9 +52,58 @@
 						WHERE id_compras=".$last_id;
 		$stmt3=$mysqli->query($qrurl);
 		echo 'compra exitosa </br> <a href="../index.html">regresar</a> </br> ';
-		$qr->verCodigo();
-		echo $qr->getdatos();
+		 $datosqr=$qr->getdatos();
+		 correo($imagen,$datosqr);
 	}else{
 		echo 'ocurrio un error </br> <a href="../index.html">regresar</a>';
+	}
+
+
+	function correo($qr,$qrdato){
+
+   		$email_subject1 = "Soporte de contacto: ";
+			
+		$email_body1 = "<p>Ha sido creada una nueva orden de compra, su identificador es:</p>".$qrdato."
+							<p>-----------------QR----------------</p>
+							<p>".$qr."</p>
+							<p>-----------------------------------</p>";
+
+		$mail=new PHPMailer();
+
+		$mail->isSMTP();
+
+		$mail->CharSet = 'UTF-8';
+
+		$mail->SMTPDebug = 0;
+
+		$mail->Debugoutput = 'html';
+
+		$mail->Host = 'smtp.gmail.com';
+
+		$mail->Port = 587;
+
+		$mail->SMTPSecure = 'tls';
+
+		$mail->SMTPAuth = true;
+
+		$mail->Username = "logisticacomprashn@gmail.com";
+
+		$mail->Password = "logisticahn123";
+
+		$mail->setFrom('logisticacomprashn@gmail.com', 'ComprasHn');
+
+		$mail->AddEmbeddedImage($qr,'imagen');
+
+		$mail->addAddress('roquememo11@gmail.com', 'Administrador');
+
+		$mail->Subject = $email_subject1;
+		$mail->MsgHTML($email_body1);
+
+		if (!$mail->send()) {
+		    echo "Mailer Error: " . $mail->ErrorInfo;
+		} else {
+		    echo "Message enviado!";
+		}
+
 	}
 ?>
