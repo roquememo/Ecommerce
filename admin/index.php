@@ -43,10 +43,10 @@ if(isset($_POST['login'])){
               <br>
               <form method='POST' action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Usuario">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="admin@admin.com">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="admin">
                   </div>
                   <input type='hidden' name='login'>
                   <button type="submit" class="btn btn-primary">Iniciar sesion</button>

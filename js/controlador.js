@@ -158,6 +158,7 @@ function articulosCesta(){
  			}else{
 	 			$("#btn-cesta").html('<i class="icon-shopping-cart icon-white"></i> ['+respuesta+'] Artículos en tu cesta');
 	 			$("#a-cesta").attr('href','cesta.html');
+	 			$("#btnPagar").css('display','block');
  			}
  		},
 		error:function(){

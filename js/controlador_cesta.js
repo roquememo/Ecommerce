@@ -1,3 +1,5 @@
+
+var cesta='';
 $(document).ready(function(){
 	cargarCesta();
 });
@@ -12,16 +14,20 @@ function cargarCesta(){
  			var obj=$.parseJSON(respuesta);
 	 		var count = Object.keys(obj).length;
 	 		var precio=0;
- 			if(!(respuesta=="0")){
+ 			if(!(respuesta==0)){
  				$("#small").prepend(count);
  				for (var i = 0; i < count; i++) {
+ 					cesta=cesta+obj[i]['nombre'];
+ 					cesta=cesta+","+obj[i]['cantidad'];
+ 					cesta=cesta+","+obj[i]['precio'];
+ 					cesta=cesta+"|";
  					var suma=(obj[i]['precio']*obj[i]['cantidad']);
  	 				$("#tabla").prepend(' <tr>'+
 	                  '<td colspan="2"> <img width="60" src="'+obj[i]['url']+'" alt=""/></td>'+
 	                  '<td colspan="2">'+obj[i]['nombre']+'</td>'+
 					  '<td colspan="2">'+
 					  '<div class="input-append"><input  class="span1" style="max-width:34px" value="'+obj[i]['cantidad']+ 
-					  '" id="appendedInputButtons" size="16" type="text" disabled>'+
+					  '" size="16" type="text" disabled>'+
 					  '<button onclick="borrar('+obj[i]['id_producto']+')" class="btn btn-danger" type="button">'+
 					  '<i class="icon-remove icon-white"></i></button></div>'+
 					  '</td>'+
@@ -34,8 +40,7 @@ function cargarCesta(){
  				$("#total").html(precio);
  				
  			}else{
-	 			alert("Registrate para comprar");
-	 			$(location).attr('href','registro.html');
+	 			
  			}
  		},
 		error:function(){
@@ -78,11 +83,25 @@ function borrar(id){
 			$.toast({
 				    heading: 'Eliminado',
 				    text: 'Se ha eliminado un producto del carrito',
-				    icon: 'success'
+				    icon: 'error'
 				});
 		},
 		error:function(){
 			alert('error al borrar');
+		}
+	});
+}
+
+function paypal(){
+	$.ajax({
+		url:'php/procesar.php',
+		method:'GET',
+		data:'articulos='+cesta,
+		success:function(respuesta){
+			$(location).attr('href',respuesta);
+		},
+		error:function(error){
+			
 		}
 	});
 }
