@@ -27,15 +27,6 @@ $actualizar=  " UPDATE usuario A
             WHERE A.correo= '$correo' ";
 
 $result=$mysqli->query($actualizar);
-//$prueba=$result->$mysqli->affected_rows;
-
-	$prueba= $result->num_rows;
-
-	if($prueba>0){
-
-		echo "1";
-	}
-	else
-		echo "k";
+echo "1"
 
  ?>

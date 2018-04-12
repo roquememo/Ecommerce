@@ -224,8 +224,9 @@ $("#guardar").click(function(){
 	        data: valores,
 	        
 	        success: function(respuesta){
-	            
-	              alert(respuesta);
+	            if(respuesta==1){
+	              alert("se modificado CORRECTAMENTE");
+	            }
 					     
 					       
 				      	    
@@ -440,10 +441,10 @@ function validar(){
 		  	}
     return true;
 }
-
+//funcion habilitar inputs en el perfil de usuario para poder modificarlos los campos. 
 function habilitar(){
 
-$("#txtNombre").removeAttr('disabled');
+$("#txtNombre").removeAttr('disabled'); 
 $("#txtApellido").removeAttr('disabled');
 $("#txtEmail").removeAttr('disabled');	
 $("#txtContrasena").removeAttr('disabled');	
