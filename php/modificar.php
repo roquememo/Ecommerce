@@ -11,6 +11,7 @@ $consulta = "SELECT *FROM usuario A INNER JOIN direccion B ON A.id_direccion =B.
 
 $resultado=$mysqli->query($consulta);
 $row = mysqli_fetch_assoc($resultado);
+
 $valor= json_encode($row);
 	
 echo $valor;

@@ -118,7 +118,7 @@ $(document).ready(function(){
 		
 		success:function(respuesta){
 				var obj = $.parseJSON(respuesta);
-				
+	
 				$("#txtNombre").val(obj.nombre);
 				$("#txtApellido").val(obj.apellido);
 				$("#txtContrasena").val(obj.password);
@@ -129,8 +129,14 @@ $(document).ready(function(){
                 $("#txtTelefono2").val(obj.telefono2);
                 $("#txtInformacion").val(obj.observaciones);
                 $("#txtDireccion2").val(obj.direccion_2);
+                $("#txtcoordenada").val(obj.coordenada);
+                $("#cbxDepartamento option:selected" ).text(obj.departamento);
+               
+	
+                
 
-			
+	
+
 		},
 		error:function(){
 
@@ -192,7 +198,7 @@ $("#registro").click(function(){
 		});
 		
 	}else{
-		$("#error").html("Campos vacios 1");
+		$("#error").html("Campos vacios");
 	}
 });
 
@@ -203,9 +209,9 @@ $("#guardar").click(function(){
    var apellido_usuario=  $("#txtApellido").val();
    var email_usuario = $("#txtEmail").val();   
    var contrasena = $("#txtContrasena").val();
- 
+   var input  =    $("#cbxDepartamento option:selected" ).text();
    var nombre_direccion =$("#txtDireccion").val(); 
-  
+   
    var direccion2 = $("#txtDireccion2").val();
    var ciudad_usuario = $("#txtCiudad").val();
    var telefono1 = $("#txtTelefono").val();
@@ -214,7 +220,7 @@ $("#guardar").click(function(){
    
 
    var valores= "usuario="+ nombre_usuario+"&apellido="+ apellido_usuario +"&email="+email_usuario 
-   			+ "&contrasena="+contrasena   
+   			+ "&contrasena="+contrasena +   "&departamento=" +input
                + "&direccion_1=" + nombre_direccion+  "&direccion_2=" + direccion2
                +"&ciudad=" + ciudad_usuario + "&telefono_1=" + telefono1 + "&telefono_2=" + telefono2 
                 + "&observaciones=" + observaciones ;
@@ -226,8 +232,19 @@ $("#guardar").click(function(){
 	        
 	        success: function(respuesta){
 	            if(respuesta==1){
-	              alert("se modificado CORRECTAMENTE");
-	            }
+	            	
+                  $.toast({
+                  	  beforeShow: function () {
+                      desahabilitar();
+                       },
+                      heading: 'Success',
+                      text: 'se ha modificado correctamente',
+                      showHideTransition: 'slide',
+                      icon: 'success',
+                      hideAfter: 1200
+                   })        
+                 
+      }
 					     
 					       
 				      	    
@@ -279,9 +296,17 @@ $("#prueba-registro").click(function(){
 					 $('#txtEmail').focus();
 	               }
 				   else if (respuesta==2) {
-				   	$('#alert').addClass('alert alert-success').html('SE HA REGISTRADO CORRECTAMENTE').show(3000).delay(3000).hide(300);
-					    //   $('#alert').html('SE HA REGISTRADO CORRECTAMENTE').addClass("alert alert-success ").fadeIn("slow");
-					       window.location="index.html";
+				   	$.toast({
+                  	  afterHidden: function () {
+                      window.location="index.html";
+                       },
+                      heading: 'Success',
+                      text: 'se ha registroado correctamente',
+                      showHideTransition: 'slide',
+                      icon: 'success',
+                      hideAfter: 1200
+
+                   })        
 				      			
 				      	    }
 
@@ -303,15 +328,15 @@ function validar(){
 
 		   if($("#txtNombre").val() == ""){
 		   
-		   	  	$('#nombre').html('campo nombre esta vacio' +" "+ '<i class="fas fa-times"></i>' ).addClass("has-warning ");
+		   	  	$('#nombre').html('campo nombre esta vacio' +" "+ '<i class="fas fa-times"></i>' );
 		   		$("#txtNombre").focus();  
-		   	     	  
+		   	     	
 		      return false;
 		    }
 		  else
 		     {
 		  	  $("#nombre").html(" ");
-		  	  $('#txtNombre').removeClass("invalid");
+		  	  
 		  	}
 
 		   /****************************************Apellido*************************************/
@@ -348,16 +373,25 @@ function validar(){
 				 $("#capchas").html(" ");
 		         	}
 			  
-		/***********************************EMAIL***************************************************/
+		/***********************************contraeña***************************************************/
 		   if($("#txtContrasena").val() == ""){
 		   	  $('#contrasena').html('campo contraseña esta vacio' +" "+ '<i class="fas fa-times"></i>');
 		   	  $("#txtContrasena").focus();  
 		       return false;
+		    }else if($("#txtContrasena").val().length<8) {
+
+		    	$('#contrasena').html('contraseña debe tener 8 al menos 8 caracteres' +" "+ '<i class="fas fa-times"></i>');
+		   	  $("#txtContrasena").focus();  
+		   	  return false;
 		    }
+               
+                    
+
+
 		  else{
 		  	 $("#contrasena").html(" ");
 		  	}
-			
+	/****************************************fecha******************************************************************/		
 
 		  if( ($('#cbxDiaa').val() ==00) || ($('#cbxAnoo').val()==0000 ) || ($("#cbxMess").val()==00)) {
 		         $('#fecha').html('introduzca una fecha valida' +" "+ '<i class="fas fa-times"></i>');
@@ -369,7 +403,7 @@ function validar(){
 		    }
 
 
-		/***********************************contraseña***************************************************/
+		/***********************************direccion***************************************************/
 		   if($("#txtDireccion").val() == ""){
 		   	 $('#direccion').html('campo direccion esta vacio' +" "+ '<i class="fas fa-times"></i>');
 		   	 $("#txtDireccion").focus();  
@@ -447,7 +481,7 @@ function habilitar(){
 
 $("#txtNombre").removeAttr('disabled'); 
 $("#txtApellido").removeAttr('disabled');
-$("#txtEmail").removeAttr('disabled');	
+//$("#txtEmail").removeAttr('disabled');	
 $("#txtContrasena").removeAttr('disabled');	
 $("#txtCiudad").removeAttr('disabled');
 $("#cbxDepartamento").removeAttr('disabled');
@@ -459,7 +493,22 @@ $("#txtTelefono2").removeAttr('disabled');
 
 $("#guardar").removeAttr("disabled");
 }
+function desahabilitar(){
 
+$("#txtNombre").attr('disabled',true); 
+$("#txtApellido").attr('disabled',true);
+$("#txtEmail").attr('disabled',true);	
+$("#txtContrasena").attr('disabled',true);	
+$("#txtCiudad").attr('disabled',true);
+$("#cbxDepartamento").attr('disabled',true);
+$("#txtDireccion2").attr('disabled',true);
+$("#txtDireccion").attr('disabled',true);
+$("#txtInformacion").attr('disabled',true);
+$("#txtTelefono").attr('disabled',true);
+$("#txtTelefono2").attr('disabled',true);
+
+$("#guardar").attr("disabled",true);
+}
 
 
 $("#submitButton").click(function(){
