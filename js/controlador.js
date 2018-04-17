@@ -94,7 +94,7 @@ $(document).ready(function(){
 					'<span class="btn btn-large btn-success">Salir</span></a>');
                 $("#menu1").html('<a href="perfil.html">Perfil</a>');
 				$("#menu2").html('<a href="historial.html">Historial</a>');
-				$("#menu3").html('<a href="Ticket.html">Ticket</a>');
+				$("#menu3").html('<a href="tickets.html">Ticket</a>');
                 
 			}else{
 				$("#bienvenido").html("Usuario");
@@ -561,4 +561,70 @@ function guardarCarro(id,nombre,cantidad){
 				}
 			}
 		});
+}
+
+/***********************************tickets***************************************************/
+
+
+function tickets() {
+
+    var asuntoVAR = $("input#asunto").val();
+    var descripcionVAR = $("textarea#descripcion").val();    
+ 
+     if (asuntoVAR != "" && descripcionVAR != "") {
+        $.post("php/tickets.php", {asunto: asuntoVAR, descripcion: descripcionVAR, op: 'guardar'}, function(mensaje) {
+            //$("#resultadoBusqueda").html(mensaje);
+         }); 
+     }   
+
+        $.post("php/tickets.php",{op: 'cargar'},  function(mensaje) {
+            $("#tickets").html(mensaje);
+        });   
+};
+
+function cerrarTicket(id) {
+
+
+        $.post("php/tickets.php", {idTicket: id, op: 'cerrar'}, function(mensaje) {
+            //$("#resultadoBusqueda").html(mensaje);
+         });
+
+        $.post("php/tickets.php",{op: 'cargar'},  function(mensaje) {
+            $("#tickets").html(mensaje);
+        });   
+};
+
+function ReabrirTicket(id) {
+
+
+        $.post("php/tickets.php", {idTicket: id, op: 'reabrir'}, function(mensaje) {
+            //$("#resultadoBusqueda").html(mensaje);
+         });
+
+        $.post("php/tickets.php",{op: 'cargar'},  function(mensaje) {
+            $("#tickets").html(mensaje);
+        });   
+};
+
+function buscar() {
+    var textoBusqueda = $("input#busqueda").val();
+ 
+     if (textoBusqueda != "") {
+        $.post("php/buscar.php", {valorBusqueda: textoBusqueda}, function(mensaje) {
+            $("#resultadoBusqueda").html(mensaje);
+         }); 
+     } else { 
+      	 $("#resultadoBusqueda").html('');
+        };
+};
+
+$("#resultadoBusqueda").click(function(){
+	var url= 'productos.html?cate='+$("#select-categorias").val();
+	$(location).attr('href',url);
+});
+
+function historial(){
+    $.post("php/historial.php",{op: 'cargar'},  function(mensaje) {
+    $("#historial").html(mensaje);
+});   
 }
