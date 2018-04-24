@@ -96,7 +96,7 @@
 		
 	    
 		$sql2 = "INSERT INTO usuario (nombre, apellido, correo, password, fecha_nac, id_direccion) 
-		 		VALUES ('$nombre', '$apellido', '$correo', '$password', '$fecha_nac', '$id_direccion')";
+		 		VALUES ('$nombre', '$apellido', '$correo', md5('$password'), '$fecha_nac', '$id_direccion')";
 		$insert=$mysqli->query($sql2);
 		mysqli_close($mysqli);
 

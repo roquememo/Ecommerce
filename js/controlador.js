@@ -378,9 +378,9 @@ function validar(){
 		   	  $('#contrasena').html('campo contraseña esta vacio' +" "+ '<i class="fas fa-times"></i>');
 		   	  $("#txtContrasena").focus();  
 		       return false;
-		    }else if($("#txtContrasena").val().length<8) {
+		    }else if($("#txtContrasena").val().length<5) {
 
-		    	$('#contrasena').html('contraseña debe tener 8 al menos 8 caracteres' +" "+ '<i class="fas fa-times"></i>');
+		    	$('#contrasena').html('contraseña debe tener al menos 5 caracteres' +" "+ '<i class="fas fa-times"></i>');
 		   	  $("#txtContrasena").focus();  
 		   	  return false;
 		    }
