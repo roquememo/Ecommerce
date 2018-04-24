@@ -4,7 +4,8 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 	
 	$user=inputSeguro($mysqli,$_GET['correo']);
 	$pass=inputSeguro($mysqli,$_GET['password']);
-	$consulta="SELECT * FROM usuario WHERE correo='".$user."' AND password= '".$pass."'";
+	$passSegura=md5($pass);
+	$consulta="SELECT * FROM usuario WHERE correo='".$user."' AND password= '".$passSegura."'";
 	$stmt = $mysqli->query($consulta);
 
 	if($row=mysqli_fetch_array($stmt)){
