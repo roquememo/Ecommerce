@@ -14,7 +14,7 @@
 #myCart {font-size: 13px;font-weight: bold; line-height: 33px;}
 #sidebar ul ul li a{ font-size:12px;}
 #sidebar ul {list-style: none;padding: 0;margin: 0;width: 100%;}
-#sidebar  li  a{font-weight:bold; background:url(../images/tabRepeatInactive.png) repeat-x 0 0; color:#262626;}
+#sidebar  li  a{font-weight:bold; background:url(../images/tabRepeatInactive.png) repeat-x 0 0; color:#7e7e7e;}
 #sidebar ul li li a{background:#eee; padding-left:14px;font-weight:normal;display:block;   font-size:13px; line-height:26px;}
 .thumbnail>a{display:block; text-align:center}
 .thumbnail h5,.thumbnail p{text-align:center}
