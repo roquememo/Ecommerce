@@ -23,7 +23,6 @@ ON DUPLICATE KEY UPDATE `id_carrito` = VALUES(`id_carrito`), `id_producto` = VAL
 INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`) VALUES
 (1,	'Ropa'),
 (2,	'Tecnología'),
-(3,	'Salud y Belleza'),
 (4,	'Deportes'),
 (5,	'Libros y Entretenimiento'),
 (6,	'Zapatos')
@@ -85,7 +84,7 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `cantidad`, `descrip
 (4,	'Coraline',	1500,	5,	'Cuando Coraline atraviesa una de las puertas de la casa nueva de su familia, se encuentra que hay otra casa extrañamente similar a la suya (aunque la nueva sea, definitivamente, mejor).',	0.5,	NULL,	5),
 (5,	'Food Showcase with FlexZone',	25000,	10,	'ofrece lo último en flexibilidad para almacenamiento de alimentos, para que todo se mantenga más fresco. Con solo un toque, el compartimiento puede convertirse fácilmente de nevera a freezer con cuatro configuraciones de temperatura preestablecidas.',	390,	'RF28K9380SR ',	2),
 (6,	'55\" QLED 4K Flat Smart TV ',	50000,	15,	'Simplemente incomparable. La tecnología de puntos cuánticos ofrece la perfección del mejor color, mediante el uso de un innovador material de aleación. Una experiencia de visualización de otro planeta que jamás de desvanece.',	85,	'Series Q7F',	2),
-(7,	'NIKE ZOOM RIVAL',	1500,	30,	'Tenis de velocidad',	0.6,	's9',	6),
+(7,	'NIKE ZOOM RIVAL',	1500,	30,	'Tenis de velocidad',	0.6,	's9',	4),
 (8,	'NIKE MANOA ',	2000,	24,	'Zapatos casuales',	1,	'MANOA',	6),
 (9,	'Chaqueta acolchada',	1500,	25,	'Chaqueta corta y acolchada en lona de algodón. Modelo con capucha forrada de peluche y cordón ajustable, cremallera delante, bolsillos al bies, un bolsillo interior con cierre autoadherente y puños y bajo en punto elástico de canalé. Forro guateado.',	NULL,	NULL,	1),
 (10,	'Chaquetón de sarga',	1800,	26,	'Chaquetón de doble botonadura en sarga gruesa. Modelo con bolsillos ribeteados al bies, un bolsillo en el interior, puños con trabilla y botón, y abertura detrás. Forrado.',	NULL,	NULL,	1),

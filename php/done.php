@@ -94,7 +94,7 @@
 
 		$mail->AddEmbeddedImage($qr,'imagen');
 
-		$mail->addAddress('roquememo11@gmail.com', 'Administrador');
+		$mail->addAddress('envioshn504@gmail.com', 'Administrador');
 
 		$mail->Subject = $email_subject1;
 		$mail->MsgHTML($email_body1);
