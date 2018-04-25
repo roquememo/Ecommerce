@@ -1,7 +1,6 @@
 ﻿
 
-CREATE DATABASE `ecommerce` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `ecommerce`;
+/*Importante crear base de datos ecommerce antes de ejecutar script */;
 
 DROP TABLE IF EXISTS `administrador`;
 CREATE TABLE `administrador` (

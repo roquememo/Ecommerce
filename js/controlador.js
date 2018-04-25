@@ -64,7 +64,7 @@ $(document).ready(function(){
 					  	'<h4 style="text-align:center"><a class="btn" href="productodetalles.html?id='+obj[i]['id']+'">'+
 					  	'<i class="icon-zoom-in"></i></a> <button class="btn" onClick="agregar('+id+','+nombre+')">Agregar '+
 					  	'<i class="icon-shopping-cart"></i></button> '+
-					  	'<a class="btn btn-primary" href="#">LPS '+obj[i]['precio']+'</a></h4>'+
+					  	'<span class="pull-right">LPS '+obj[i]['precio']+'</span></h4>'+
 						'</div>'+
 				  		'</div>'+
 						'</li>');
@@ -97,12 +97,12 @@ $(document).ready(function(){
 				$("#menu3").html('<a href="tickets.html">Ticket</a>');
                 
 			}else{
-				$("#bienvenido").html("Usuario");
 				$("#btn-principal").prepend('<a href="#login" role="button" data-toggle="modal" style="padding-right:0">'+
 					'<span class="btn btn-large btn-success">Entrar</span></a>');
-				$("#menu1").html('<a href="faq.html">FAQ</a>');
+				$("#menu1").html('<a href="registro.html">Registrate</a>');
 				$("#menu2").html('<a href="contacto.html">Contáctanos</a>');
 				$("#menu3").html('');
+
 			}
 		},
 		error:function(){
