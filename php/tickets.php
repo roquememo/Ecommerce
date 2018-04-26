@@ -24,7 +24,7 @@ switch ($op) {
 	if(isset($_SESSION['id'])){
 
 	$idUsuario = $_SESSION['id'];
-	$sql = "INSERT INTO tickets(asunto, estado, descripcion, fecha_apertura, id_usuario) VALUES('$asunto', 'Abierto', '$descripcion', '$hoy', $idUsuario)";
+	$sql = "INSERT INTO tickets(asunto, estado, descripcion, fecha_apertura, id_usuario) VALUES('$asunto', 'PENDIENTE', '$descripcion', '$hoy', $idUsuario)";
 
 	$consulta = mysqli_query($mysqli, $sql);
 

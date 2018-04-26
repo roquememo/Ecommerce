@@ -130,6 +130,9 @@ $(document).ready(function(){
                 $("#txtDireccion2").val(obj.direccion_2);
                 $("#txtcoordenada").val(obj.coordenada);
                 $("#cbxDepartamento option:selected" ).text(obj.departamento);
+                $("#cbxDiaa option:selected" ).text(obj.dia);
+                $("#cbxMess option:selected" ).text(obj.mes);
+                $("#cbxAnoo option:selected" ).text(obj.anio);
                
 	
                 
@@ -603,6 +606,12 @@ function ReabrirTicket(id) {
         $.post("php/tickets.php",{op: 'cargar'},  function(mensaje) {
             $("#tickets").html(mensaje);
         });   
+};
+
+function detalleHistorial(id) {
+
+	window.location  = "php/printHistorial.php?idCarrito=" + id;
+
 };
 
 function buscar() {
