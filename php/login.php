@@ -13,7 +13,7 @@ if ((isset($_GET['correo']))&&(isset($_GET['password']))) {
 		$_SESSION['nombre']=$row['nombre'];
 		$_SESSION['apellido']=$row['apellido'];
 		$_SESSION['correo']=$row['correo'];
-		$_SESSION['password']=$row['password'];
+		$_SESSION['password']=$_GET['password'];
         $_SESSION['cumple']=$row['fecha_nac'];
 		$_SESSION['direccion']=$row['id_direccion'];
 		echo '1';

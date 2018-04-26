@@ -30,6 +30,23 @@ if(isset($_POST['cerrar_sesion']))
 $conexion2 = new mysqli("localhost", "root", "", "ecommerce");
 $tmp = null;
 
+if(isset($_POST['event_load_picture']))
+	{
+		// Empaquetando valores de los campos a guardar
+		$target_dir = "../img/";
+        $target_file = $target_dir.basename($_FILES["docFile"]["name"]);
+        move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file);
+
+	
+
+
+
+	}
+
+
+
+
+
 
 // Invocando proceso de insercion
 if(isset($_POST['save_product']))
@@ -42,6 +59,8 @@ if(isset($_POST['save_product']))
 		$Model->descripcion = addslashes($_POST['descripcion']);	
 		$Model->peso = addslashes($_POST['peso']);
 		$Model->modelo = addslashes($_POST['modelo']);	
+		$Model->picture = addslashes($_POST['picFile']);
+
 
 		// Ejecutando insercion a la base de datos
 		$Model->Insertar();
@@ -270,6 +289,9 @@ if(isset($_POST['update_product_event']))
 
 
 
+
+
+
 	<div id="new_product" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -312,7 +334,6 @@ if(isset($_POST['update_product_event']))
 	</div><!-- /.modal -->
 
 
-
 	<div id="new_product_ropa" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -323,7 +344,7 @@ if(isset($_POST['update_product_event']))
 					<div class="modal-body">
 						<div class="panel-body">
 							
-							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form action="UploadRopa.php" method="post" enctype="multipart/form-data">
 
 								<div class="row">
 									<div class="form-group col-sm-6 grid-margin">
@@ -352,14 +373,25 @@ if(isset($_POST['update_product_event']))
 									<div class="form-group col-sm-6 grid-margin">
 										<input type="text" name="modelo" class="form-control" id="txtModelo" placeholder="Modelo" required>
 									</div>
-								</div>											
+								</div>
+								<br>
+								<div class="row">
+									<div class="form-group col-sm-6 grid-margin">
+										<label>Seleccione imagenes del producto: </label>
+									</div>
+									<div class="form-group col-sm-6 grid-margin">
+										<input type="file" name="picFileR1" id="picFileR1" required>
+									</div>								
+								</div>
+
+											
 
 								<div class="row col-sm-6 col-sm-offset-3">
 									<br>
 									<center>
 									<div class="form-group">
-										<input type='hidden' name='save_product'>
-										<button type="submit" class="btn btn-success">Guardar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<input type="submit" value="Guardar producto" name="submit" class="btn btn-success">
 									</div>
 									</center>
 								</div>
@@ -373,6 +405,8 @@ if(isset($_POST['update_product_event']))
 
 
 
+
+
 <div id="new_product_tecn" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -383,7 +417,7 @@ if(isset($_POST['update_product_event']))
 					<div class="modal-body">
 						<div class="panel-body">
 							
-							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form action="UploadTecno.php" method="post" enctype="multipart/form-data">
 
 								<div class="row">
 									<div class="form-group col-sm-6 grid-margin">
@@ -412,14 +446,25 @@ if(isset($_POST['update_product_event']))
 									<div class="form-group col-sm-6 grid-margin">
 										<input type="text" name="modeloT" class="form-control" id="txtModelo" placeholder="Modelo" required>
 									</div>
-								</div>											
+								</div>
+								<br>
+								<div class="row">
+									<div class="form-group col-sm-6 grid-margin">
+										<label>Seleccione imagenes del producto: </label>
+									</div>
+									<div class="form-group col-sm-6 grid-margin">
+										<input type="file" name="picFileT1" id="picFileT1" required>
+									</div>
+								</div>
+
+										
 
 								<div class="row col-sm-6 col-sm-offset-3">
 									<br>
 									<center>
 									<div class="form-group">
-										<input type='hidden' name='save_productT'>
-										<button type="submit" class="btn btn-success">Guardar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<input type="submit" value="Guardar producto" name="submit" class="btn btn-success">
 									</div>
 									</center>
 								</div>
@@ -433,7 +478,6 @@ if(isset($_POST['update_product_event']))
 
 
 
-
 <div id="new_product_sb" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -444,7 +488,7 @@ if(isset($_POST['update_product_event']))
 					<div class="modal-body">
 						<div class="panel-body">
 							
-							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form action="UploadSB.php" method="post" enctype="multipart/form-data">
 
 								<div class="row">
 									<div class="form-group col-sm-6 grid-margin">
@@ -473,14 +517,23 @@ if(isset($_POST['update_product_event']))
 									<div class="form-group col-sm-6 grid-margin">
 										<input type="text" name="modeloSB" class="form-control" id="txtModelo" placeholder="Modelo" required>
 									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="form-group col-sm-6 grid-margin">
+										<label>Seleccione una imagen del producto: </label>
+									</div>
+									<div class="form-group col-sm-6 grid-margin">
+										<input type="file" name="picFileSB" id="picFileSB" required>
+									</div>								
 								</div>											
 
 								<div class="row col-sm-6 col-sm-offset-3">
 									<br>
 									<center>
 									<div class="form-group">
-										<input type='hidden' name='save_productSB'>
-										<button type="submit" class="btn btn-success">Guardar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<input type="submit" value="Guardar producto" name="submit" class="btn btn-success">
 									</div>
 									</center>
 								</div>
@@ -494,6 +547,7 @@ if(isset($_POST['update_product_event']))
 
 
 
+
 <div id="new_product_dp" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -504,7 +558,7 @@ if(isset($_POST['update_product_event']))
 					<div class="modal-body">
 						<div class="panel-body">
 							
-							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form action="UploadDeporte.php" method="post" enctype="multipart/form-data">
 
 								<div class="row">
 									<div class="form-group col-sm-6 grid-margin">
@@ -533,14 +587,23 @@ if(isset($_POST['update_product_event']))
 									<div class="form-group col-sm-6 grid-margin">
 										<input type="text" name="modeloDP" class="form-control" id="txtModelo" placeholder="Modelo" required>
 									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="form-group col-sm-6 grid-margin">
+										<label>Seleccione una imagen del producto: </label>
+									</div>
+									<div class="form-group col-sm-6 grid-margin">
+										<input type="file" name="picFileDP" id="picFileDP" required>
+									</div>								
 								</div>											
 
 								<div class="row col-sm-6 col-sm-offset-3">
 									<br>
 									<center>
 									<div class="form-group">
-										<input type='hidden' name='save_productDP'>
-										<button type="submit" class="btn btn-success">Guardar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<input type="submit" value="Guardar producto" name="submit" class="btn btn-success">
 									</div>
 									</center>
 								</div>
@@ -553,8 +616,6 @@ if(isset($_POST['update_product_event']))
 </div><!-- /.modal -->
 
 
-
-
 <div id="new_product_le" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -565,7 +626,7 @@ if(isset($_POST['update_product_event']))
 					<div class="modal-body">
 						<div class="panel-body">
 							
-							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form action="UploadLE.php" method="post" enctype="multipart/form-data">
 
 								<div class="row">
 									<div class="form-group col-sm-6 grid-margin">
@@ -594,14 +655,23 @@ if(isset($_POST['update_product_event']))
 									<div class="form-group col-sm-6 grid-margin">
 										<input type="text" name="modeloLE" class="form-control" id="txtModelo" placeholder="Modelo" required>
 									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="form-group col-sm-6 grid-margin">
+										<label>Seleccione una imagen del producto: </label>
+									</div>
+									<div class="form-group col-sm-6 grid-margin">
+										<input type="file" name="picFileLE" id="picFileLE" required>
+									</div>								
 								</div>											
 
 								<div class="row col-sm-6 col-sm-offset-3">
 									<br>
 									<center>
 									<div class="form-group">
-										<input type='hidden' name='save_productLE'>
-										<button type="submit" class="btn btn-success">Guardar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<input type="submit" value="Guardar producto" name="submit" class="btn btn-success">
 									</div>
 									</center>
 								</div>
@@ -626,7 +696,7 @@ if(isset($_POST['update_product_event']))
 					<div class="modal-body">
 						<div class="panel-body">
 							
-							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form action="UploadZ.php" method="post" enctype="multipart/form-data">
 
 								<div class="row">
 									<div class="form-group col-sm-6 grid-margin">
@@ -655,14 +725,23 @@ if(isset($_POST['update_product_event']))
 									<div class="form-group col-sm-6 grid-margin">
 										<input type="text" name="modeloZ" class="form-control" id="txtModelo" placeholder="Modelo" required>
 									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="form-group col-sm-6 grid-margin">
+										<label>Seleccione una imagen del producto: </label>
+									</div>
+									<div class="form-group col-sm-6 grid-margin">
+										<input type="file" name="picFileZ" id="picFileZ" required>
+									</div>								
 								</div>											
 
 								<div class="row col-sm-6 col-sm-offset-3">
 									<br>
 									<center>
 									<div class="form-group">
-										<input type='hidden' name='save_productZ'>
-										<button type="submit" class="btn btn-success">Guardar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<input type="submit" value="Guardar producto" name="submit" class="btn btn-success">
 									</div>
 									</center>
 								</div>
@@ -684,7 +763,7 @@ if(isset($_POST['update_product_event']))
 						</div>
 						<div class="modal-body">
 							<div class="panel-body">
-							<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<form action="remove_product.php" method="post" enctype="multipart/form-data">
 
 								<div class="row">
 									<table class="mitabla">
@@ -709,8 +788,8 @@ if(isset($_POST['update_product_event']))
 								<div class="row col-sm-6 col-sm-offset-3">
 									<br><br>									
 										<div class="form-group">
-											<input type='hidden' name='delete_product_event'>
-											<button type="submit" class="btn btn-danger">Eliminar</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										<input type="submit" value="Eliminar producto" name="submit" class="btn btn-danger">
 										</div>									
 								</div>
 							</form>

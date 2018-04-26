@@ -9,6 +9,7 @@ class Insertar_product_ropa{
     public $modelo;
     public $categoria;
     public $temp = 1;
+    public $picture;
 
   
     public function Insertar(){

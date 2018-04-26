@@ -45,12 +45,14 @@ $idUsuario = $_SESSION['id'];
 			<th scope="col">Monto<th><br>
 			<th scope="col">Estado de Envío<th><br>
 			<th scope="col">Fecha de Entrega<th><br>
+			<th scope="col">Ver Detalle<th><br>			
 			</thead>';
 		while($resultados = mysqli_fetch_array($consulta)) {
 			$asunto = $resultados['fecha'];
 			$descripcion = $resultados['monto'];
 			$estado = $resultados['estado_envio'];
 			$desde = $resultados['fecha_entrega'];			
+			$idcarrito = $resultados['id_carrito'];			
 
 			//Output
 			$mensaje .= '
@@ -59,8 +61,8 @@ $idUsuario = $_SESSION['id'];
 			<td scope="col">' . $asunto . '<td><br>
 			<td scope="col">' . $descripcion . '<td><br>
 			<td scope="col">' . $estado . '<td><br>
-			<td scope="col">' . $desde . '<td><br>
-			<td scope="col">' . $hasta . '<td><br>			
+			<td scope="col">' . $desde . '<td><br>	
+			<td scope="col"><a href="#" target="_blank" onclick="detalleHistorial('.$idcarrito.');"> <i class="fa fa-check" aria-hidden="true"></i></a>
 			</tr>
 			
 			';
