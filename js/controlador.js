@@ -101,8 +101,7 @@ $(document).ready(function(){
 					'<span class="btn btn-large btn-success">Entrar</span></a>');
 				$("#menu1").html('<a href="registro.html">Registrate</a>');
 				$("#menu2").html('<a href="contacto.html">Contáctanos</a>');
-				$("#menu3").html('');
-
+				$("#menu3").html('');	
 			}
 		},
 		error:function(){
